@@ -1,0 +1,9 @@
+@font-face {
+    font-family: Kalameh;
+    src: url(../fonts/Kalameh-Regular.ttf);
+}
+
+body {
+    font-family: Kalameh;
+    margin: 0;
+}
