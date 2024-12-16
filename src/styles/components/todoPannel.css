@@ -1,0 +1,162 @@
+.todo_pannel {
+    height: 100vh;
+    overflow-y: hidden;
+    display: flex;
+}
+
+.todo_content {
+    width: calc(100% - (20% - 40px));
+    background-image: url(../../images/todo-background/2.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: calc(100% - 50px);
+    margin-top: 50px;
+    border-radius: 10px 0 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.add_todo {
+    width: 90%;
+    box-shadow: 0 0 100px #0000009d;
+    position: absolute;
+    bottom: 7.5%;
+}
+
+.add_todo input {
+    width: calc(100% - 80px);
+    padding: 20px 20px 20px 60px;
+    border: 0;
+    outline: 0;
+    font-size: 18px;
+    border-radius: 5px;
+}
+
+.add_todo span {
+    position: absolute;
+    left: 20px;
+    font-size: 18px;
+    top: 17px;
+    font-family: Poppins;
+}
+
+.tasks_title {
+    position: absolute;
+    top: 5%;
+    width: 90%;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+}
+
+.tasks_title span {
+    font-size: 30px;
+    font-family: PoppinsBold;
+}
+
+.time {
+    display: flex;
+    align-items: center;
+    font-family: PoppinsBold;
+}
+
+.time_wrapper div {
+    display: flex;
+    font-size: 30px;
+}
+
+.minutes {
+    position: relative;
+    bottom: 15px;
+}
+
+.am_pm {
+    font-size: 14px !important;
+    margin: -15px 0 0 10px;
+}
+
+.just_date {
+    font-family: PoppinsBold;
+    font-size: 14px;
+}
+
+.todos_container {
+    width: 90%;
+    height: 65%;
+    overflow-y: auto;
+}
+.todos_container::-webkit-scrollbar {
+    width: 0;
+}
+.todos_container::-webkit-scrollbar-track {
+    background: none;
+}
+.todos_container::-webkit-scrollbar-thumb {
+    background: none;
+}
+.todos_container::-webkit-scrollbar-thumb:hover {
+    background: none;
+}
+
+.todo_box {
+    width: calc(100% - 40px);
+    padding: 15px 20px 15px 20px;
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.todo_left_section {
+    display: flex;
+    width: 100%;
+}
+
+.done_btn {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    border: 1px solid #000;
+    color: #000;
+    cursor: pointer;
+    transition: 0.2s;
+    font-size: 14px;
+    margin-right: 10px;
+}
+.done_btn:hover {
+    background-color: #000;
+    color: #fff;
+}
+
+.todo_title {
+    font-size: 14px;
+    width: calc(100% - 75px);
+}
+
+.todo_right_section {
+    display: flex;
+}
+
+.star_btn {
+    margin-right: 20px;
+    cursor: pointer;
+    transition: 0.2s;
+    color: #ffb22ca2;
+}
+.star_btn:hover {
+    color: #ffb22c;
+}
+
+.delete_btn {
+    cursor: pointer;
+    color: #ff4545a2;
+}
+.delete_btn:hover {
+    color: #ff4545;
+}

@@ -20,7 +20,7 @@
 
 .left_content .title {
     font-size: 40px;
-    font-family: KalamehMedium;
+    font-family: PoppinsBold;
     scale: 0;
     transition: 0.5s;
     width: fit-content;
@@ -125,15 +125,12 @@
     position: absolute;
     top: 30px;
     left: 30px;
-    background-color: #336aeaa2;
-    color: #fff;
+    color: #336aeaa2;
     display: flex;
-    padding: 10px 15px;
-    border-radius: 10px;
     transition: .2s;
 }
 .back_link:hover {
-    background-color: #336AEA;
+    color: #336AEA;
 }
 
 .back_link span {

@@ -1,0 +1,132 @@
+.todo_menu_container {
+    width: calc(20% - 40px);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px 40px;
+}
+
+.todo_logo {
+    font-family: PoppinsBold;
+    font-size: 30px;
+    color: #336aea;
+    position: absolute;
+    top: 20px;
+    left: 40px;
+}
+
+.user_profile_image {
+    width: 60px;
+    height: 60px;
+}
+
+.user_inf {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    padding: 20px 0;
+    border-radius: 5px;
+}
+
+.user_name_email {
+    margin: 5px 0 0 15px;
+}
+
+.user_email {
+    color: #336aea;
+    font-size: 14px;
+}
+
+.user_profile_image img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.menu_options {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.important_todos,
+.home_todos {
+    display: flex;
+    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+.home_todos.show,
+.important_todos.show {
+    background-color: #eef5ff;
+}
+.home_todos:hover,
+.important_todos:hover {
+    background-color: #eef5ff;
+}
+
+.home_todos div,
+.important_todos div {
+    margin-left: 10px;
+}
+.home_todos span {
+    color: #336aea;
+}
+.important_todos span {
+    color: #ffb22c;
+}
+
+.todo_lists {
+    display: flex;
+    cursor: pointer;
+    padding: 10px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ccc;
+}
+
+.todo_list {
+    display: flex;
+    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 5px;
+    position: relative;
+}
+.todo_list.show {
+    background-color: #eef5ff;
+}
+
+.todo_list div {
+    margin-left: 10px;
+}
+
+.list_edit_btn {
+    position: absolute;
+    right: 20px;
+    color: #336aea;
+    display: none;
+}
+.todo_list.show .list_edit_btn {
+    display: block;
+}
+
+.create_list_btn {
+    display: flex;
+    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: #336aeaa2;
+    margin-top: 30px;
+    transition: .2s;
+    color: #fff;
+}
+.create_list_btn:hover {
+    background-color: #336aea;
+    color: #fff;
+}
+
+.create_list_btn div {
+    margin-left: 10px;
+}

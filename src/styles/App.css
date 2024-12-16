@@ -1,10 +1,16 @@
 @font-face {
-    font-family: Kalameh;
-    src: url(../fonts/Kalameh-Regular.ttf);
+    font-family: Poppins;
+    src: url(../fonts/Poppins-Medium.ttf);
+}
+
+@font-face {
+    font-family: PoppinsBold;
+    src: url(../fonts/Poppins-Bold.ttf);
 }
 
 body {
-    font-family: Kalameh;
+    font-family: Poppins;
     margin: 0;
     padding: 0;
+    user-select: none;
 }
