@@ -3,8 +3,16 @@
     height: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
     padding: 50px 40px;
+    z-index: 3;
+    transition: 0.4s;
+}
+
+.menu_close_icon {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 18px;
 }
 
 .todo_logo {
@@ -14,11 +22,13 @@
     position: absolute;
     top: 20px;
     left: 40px;
+    transition: 0.4s;
 }
 
 .user_profile_image {
     width: 60px;
     height: 60px;
+    margin-right: 10px;
 }
 
 .user_inf {
@@ -28,21 +38,34 @@
     margin-top: 20px;
     padding: 20px 0;
     border-radius: 5px;
+    flex-wrap: wrap;
 }
 
 .user_name_email {
-    margin: 5px 0 0 15px;
+    margin: 5px 0 0 0;
+}
+
+.user_name_box {
+    width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .user_email {
     color: #336aea;
     font-size: 14px;
+    width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .user_profile_image img {
-    width: 100%;
-    height: 100%;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
+    object-fit: cover;
 }
 
 .menu_options {
@@ -119,7 +142,7 @@
     border-radius: 5px;
     background-color: #336aeaa2;
     margin-top: 30px;
-    transition: .2s;
+    transition: 0.2s;
     color: #fff;
 }
 .create_list_btn:hover {
@@ -129,4 +152,123 @@
 
 .create_list_btn div {
     margin-left: 10px;
+}
+
+@media (max-width: 1300px) {
+    .todo_logo {
+        font-size: 24px;
+    }
+
+    .user_inf {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .user_name_email {
+        margin: 10px 0 0 0;
+    }
+
+    .user_profile_image {
+        width: 45px;
+        height: 45px;
+    }
+
+    .user_name_box {
+        font-size: 14px;
+    }
+
+    .user_email {
+        font-size: 12px;
+        width: 120px;
+    }
+
+    .user_name_box {
+        width: 120px;
+    }
+
+    .user_profile_image img {
+        width: 45px;
+        height: 45px;
+    }
+
+    .important_todos,
+    .home_todos {
+        padding: 10px 15px;
+        font-size: 14px;
+    }
+
+    .todo_lists {
+        font-size: 14px;
+    }
+
+    .todo_list {
+        padding: 10px 15px;
+        font-size: 14px;
+    }
+
+    .create_list_btn {
+        padding: 10px 15px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 1000px) {
+    .todo_menu_container {
+        width: calc(25% - 20px);
+        padding: 50px 20px;
+    }
+
+    .todo_logo {
+        font-size: 22px;
+        left: 20px;
+    }
+
+    .important_todos,
+    .home_todos {
+        font-size: 12px;
+    }
+
+    .todo_lists {
+        font-size: 12px;
+    }
+
+    .todo_list {
+        font-size: 12px;
+    }
+
+    .create_list_btn {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 768px) {
+    .todo_logo {
+        font-size: 24px;
+    }
+
+    .todo_menu_container {
+        width: calc(40% - 20px);
+        position: fixed;
+        z-index: 3;
+        background-color: #fff;
+        top: 0;
+        left: calc(-40% - 20px);
+    }
+    .todo_menu_container.show {
+        left: 0;
+    }
+}
+
+@media (max-width: 500px) {
+    .todo_menu_container {
+        width: calc(60% - 20px);
+        left: calc(-60% - 20px);
+    }
+}
+
+@media (max-width: 350px) {
+    .todo_menu_container {
+        width: calc(100% - 20px);
+        left: calc(-100% - 20px);
+    }
 }

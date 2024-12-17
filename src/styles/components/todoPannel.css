@@ -4,6 +4,22 @@
     display: flex;
 }
 
+.menu_open_icon_wrapper {
+    width: 90%;
+    position: absolute;
+    top: 0;
+    left: 5%;
+    height: 50px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.menu_open_icon {
+    cursor: pointer;
+    font-size: 18px;
+}
+
 .todo_content {
     width: calc(100% - (20% - 40px));
     background-image: url(../../images/todo-background/2.jpg);
@@ -16,13 +32,14 @@
     align-items: center;
     justify-content: center;
     position: relative;
+    transition: 0.4s;
 }
 
 .add_todo {
     width: 90%;
     box-shadow: 0 0 100px #0000009d;
     position: absolute;
-    bottom: 7.5%;
+    bottom: 50px;
 }
 
 .add_todo input {
@@ -44,7 +61,7 @@
 
 .tasks_title {
     position: absolute;
-    top: 5%;
+    top: 50px;
     width: 90%;
     color: #fff;
     display: flex;
@@ -73,7 +90,7 @@
 }
 
 .am_pm {
-    font-size: 14px !important;
+    font-size: 14px;
     margin: -15px 0 0 10px;
 }
 
@@ -84,7 +101,7 @@
 
 .todos_container {
     width: 90%;
-    height: 65%;
+    height: calc(100% - 300px);
     overflow-y: auto;
 }
 .todos_container::-webkit-scrollbar {
@@ -159,4 +176,103 @@
 }
 .delete_btn:hover {
     color: #ff4545;
+}
+
+.black_box {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background-color: #00000095;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    display: none;
+}
+.black_box.show {
+    display: block;
+}
+
+@media (max-width: 1000px) {
+    .add_todo input {
+        width: calc(100% - 70px);
+        padding: 20px 20px 20px 50px;
+        font-size: 16px;
+    }
+
+    .add_todo span {
+        left: 18px;
+        font-size: 16px;
+        top: 17px;
+    }
+
+    .tasks_title span {
+        font-size: 24px;
+    }
+
+    .time_wrapper div {
+        font-size: 24px;
+    }
+
+    .minutes {
+        bottom: 10px;
+    }
+
+    .am_pm {
+        font-size: 12px;
+        margin: -10px 0 0 10px;
+    }
+
+    .just_date {
+        font-size: 12px;
+    }
+
+    .todos_container {
+        height: calc(100% - 250px);
+    }
+
+    .done_btn {
+        width: 15px;
+        height: 15px;
+        font-size: 12px;
+        margin: 0 10px 0 0;
+    }
+
+    .todo_title {
+        font-size: 12px;
+    }
+
+    .star_btn {
+        margin-right: 15px;
+        font-size: 14px;
+    }
+
+    .delete_btn {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 768px) {
+    .todo_content {
+        width: 100%;
+        margin-top: 50px;
+        border-radius: 0;
+    }
+}
+
+@media (max-width: 500px) {
+    .add_todo input {
+        width: calc(100% - 55px);
+        padding: 17px 15px 17px 40px;
+        font-size: 14px;
+    }
+
+    .add_todo span {
+        left: 15px;
+        font-size: 14px;
+        top: 15px;
+    }
+
+    .todo_title {
+        width: calc(100% - 60px);
+    }
 }

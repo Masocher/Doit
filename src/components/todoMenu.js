@@ -7,11 +7,36 @@ import {
     faBars,
     faGear,
     faPlus,
+    faClose,
 } from "@fortawesome/free-solid-svg-icons";
+import { useMediaQuery } from "react-responsive";
+import { useDispatch, useSelector } from "react-redux";
+import { closeMenu } from "../store/Actions";
 
 export const TodoMenu = () => {
+    const menuStatus = useSelector(
+        (rootReducer) => rootReducer.blackBoxReducer
+    );
+
+    const dispatch = useDispatch();
+
+    const tabletSize = useMediaQuery({
+        query: "(max-width: 768px)",
+    });
+
     return (
-        <div className="todo_menu_container">
+        <div className={`todo_menu_container ${menuStatus ? "show" : ""}`}>
+            <div>
+                {tabletSize && (
+                    <div
+                        className="menu_close_icon"
+                        onClick={() => dispatch(closeMenu())}
+                    >
+                        <FontAwesomeIcon icon={faClose} />
+                    </div>
+                )}
+            </div>
+
             <div className="todo_logo">Doit</div>
 
             <div className="user_inf">
@@ -20,7 +45,7 @@ export const TodoMenu = () => {
                 </div>
 
                 <div className="user_name_email">
-                    <div>Masocher</div>
+                    <div className="user_name_box">Masocher</div>
                     <div className="user_email">Masocherr@gmail.com</div>
                 </div>
             </div>
@@ -64,7 +89,7 @@ export const TodoMenu = () => {
                             <FontAwesomeIcon icon={faBars} />
                         </span>
 
-                        <div>List 1</div>
+                        <div>List 2</div>
 
                         <div className="list_edit_btn">
                             <FontAwesomeIcon icon={faGear}></FontAwesomeIcon>
@@ -76,7 +101,7 @@ export const TodoMenu = () => {
                             <FontAwesomeIcon icon={faBars} />
                         </span>
 
-                        <div>List 1</div>
+                        <div>List 3</div>
 
                         <div className="list_edit_btn">
                             <FontAwesomeIcon icon={faGear}></FontAwesomeIcon>
@@ -88,7 +113,7 @@ export const TodoMenu = () => {
                             <FontAwesomeIcon icon={faBars} />
                         </span>
 
-                        <div>List 1</div>
+                        <div>List 4</div>
 
                         <div className="list_edit_btn">
                             <FontAwesomeIcon icon={faGear}></FontAwesomeIcon>
