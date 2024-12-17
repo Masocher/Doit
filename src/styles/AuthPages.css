@@ -62,7 +62,7 @@
     transition: 0.5s;
 }
 .left_content form button:hover {
-    background-color: #336AEA;
+    background-color: #336aea;
 }
 .left_content form button.show {
     scale: 1;
@@ -93,7 +93,7 @@
 }
 
 .short_link {
-    color: #336AEA;
+    color: #336aea;
     font-size: 14px;
     display: flex;
     margin-top: 20px;
@@ -127,10 +127,10 @@
     left: 30px;
     color: #336aeaa2;
     display: flex;
-    transition: .2s;
+    transition: 0.2s;
 }
 .back_link:hover {
-    color: #336AEA;
+    color: #336aea;
 }
 
 .back_link span {
@@ -140,4 +140,88 @@
 
 .back_link div {
     margin-left: 5px;
+}
+
+@media (max-width: 768px) {
+    .right_content {
+        width: 40%;
+    }
+
+    .left_content .title {
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+
+    .left_content form input {
+        width: 250px;
+        padding: 10px;
+    }
+
+    .left_content form button {
+        width: 270px;
+        padding: 15px 0;
+        margin-top: 20px;
+        font-size: 14px;
+    }
+
+    .lable {
+        font-size: 12px;
+    }
+
+    .input_box {
+        margin-top: 10px;
+    }
+
+    .short_link {
+        font-size: 12px;
+    }
+
+    .second_short_link {
+        margin-top: 20px;
+    }
+
+    .back_link {
+        font-size: 12px !important;
+    }
+}
+
+@media (max-width: 550px) {
+    .right_content {
+        display: none;
+    }
+
+    .left_content {
+        width: 100%;
+    }
+
+    .left_content .title {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+
+    .left_content form input {
+        width: 240px;
+        padding: 10px;
+    }
+
+    .left_content form button {
+        width: 260px;
+        font-size: 12px;
+    }
+
+    .lable {
+        font-size: 10px;
+    }
+
+    .short_link {
+        font-size: 10px;
+    }
+
+    .second_short_link {
+        margin-top: 20px;
+    }
+
+    .back_link {
+        font-size: 12px !important;
+    }
 }

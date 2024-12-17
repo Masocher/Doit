@@ -14,11 +14,11 @@ export const AuthPage = () => {
 
     setInterval(() => {
         setWelcomeS(true);
-    }, 800);
+    }, 600);
 
     setInterval(() => {
         setAuthbuttonsS(true);
-    }, 1200);
+    }, 800);
 
     return (
         <div className="container">

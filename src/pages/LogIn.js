@@ -1,4 +1,4 @@
-import "../styles/Login.css";
+import "../styles/AuthPages.css";
 import img from "../images/3.jpeg";
 import { useState } from "react";
 import { Link } from "react-router-dom";
@@ -18,19 +18,19 @@ export const LogIn = () => {
 
     setInterval(() => {
         setInput2S(true);
-    }, 600);
+    }, 300);
 
     setInterval(() => {
         setInput3S(true);
-    }, 900);
+    }, 400);
 
     setInterval(() => {
         setSubmitBtn(true);
-    }, 1200);
+    }, 500);
 
     setInterval(() => {
         setShortLinkS(true);
-    }, 1500);
+    }, 600);
 
     return (
         <div className="login_container">

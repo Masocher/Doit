@@ -69,3 +69,18 @@
     background-color: #336AEA;
     color: #fff;
 }
+
+@media (max-width: 550px) {
+    .logo {
+        font-size: 40px;
+    }
+    
+    .welcome_text {
+        font-size: 14px;
+        margin-top: 10px;
+    }
+    
+    .auth_buttons div {
+        font-size: 14px;
+    }
+}
