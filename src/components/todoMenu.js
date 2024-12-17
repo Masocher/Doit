@@ -125,7 +125,7 @@ export const TodoMenu = () => {
                             <FontAwesomeIcon icon={faBars} />
                         </span>
 
-                        <div>List 4</div>
+                        <div>List 5</div>
 
                         <div className="list_edit_btn">
                             <FontAwesomeIcon icon={faGear}></FontAwesomeIcon>
@@ -137,7 +137,31 @@ export const TodoMenu = () => {
                             <FontAwesomeIcon icon={faBars} />
                         </span>
 
-                        <div>List 4</div>
+                        <div>List 6</div>
+
+                        <div className="list_edit_btn">
+                            <FontAwesomeIcon icon={faGear}></FontAwesomeIcon>
+                        </div>
+                    </div>
+
+                    <div className="todo_list">
+                        <span>
+                            <FontAwesomeIcon icon={faBars} />
+                        </span>
+
+                        <div>List 7</div>
+
+                        <div className="list_edit_btn">
+                            <FontAwesomeIcon icon={faGear}></FontAwesomeIcon>
+                        </div>
+                    </div>
+
+                    <div className="todo_list">
+                        <span>
+                            <FontAwesomeIcon icon={faBars} />
+                        </span>
+
+                        <div>List 8</div>
 
                         <div className="list_edit_btn">
                             <FontAwesomeIcon icon={faGear}></FontAwesomeIcon>
