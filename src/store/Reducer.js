@@ -2,7 +2,7 @@ import { combineReducers } from "redux";
 
 import { LOG_OUT, OPEN_MENU, CLOSE_MENU } from "./Types";
 
-const authStatus = false;
+const authStatus = true;
 
 const authStatusReducer = (state = authStatus, action) => {
     switch (action.type) {
