@@ -193,16 +193,24 @@
 }
 
 @media (max-width: 1440px) {
+    .add_todo {
+        bottom: 30px;
+    }
+
     .add_todo input {
-        width: calc(100% - 70px);
-        padding: 20px 20px 20px 50px;
-        font-size: 16px;
+        width: calc(100% - 65px);
+        padding: 15px 15px 15px 50px;
+        font-size: 14px;
     }
 
     .add_todo span {
         left: 18px;
-        font-size: 16px;
-        top: 17px;
+        font-size: 14px;
+        top: 13px;
+    }
+
+    .tasks_title {
+        top: 30px;
     }
 
     .tasks_title span {
@@ -230,11 +238,15 @@
         height: calc(100% - 250px);
     }
 
+    .todo_box {
+        padding: 13px 20px 13px 20px;
+    }
+
     .done_btn {
         width: 15px;
         height: 15px;
         font-size: 12px;
-        margin: 0 10px 0 0;
+        margin: 1px 10px 0 0;
     }
 
     .todo_title {

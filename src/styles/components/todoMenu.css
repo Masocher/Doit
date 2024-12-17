@@ -3,7 +3,7 @@
     height: 100%;
     display: flex;
     flex-direction: column;
-    padding: 50px 40px;
+    padding: 0 40px;
     z-index: 3;
     transition: 0.4s;
 }
@@ -33,12 +33,11 @@
 
 .user_inf {
     width: 100%;
-    display: flex;
-    align-items: center;
-    margin-top: 20px;
-    padding: 20px 0;
-    border-radius: 5px;
-    flex-wrap: wrap;
+    height: 20%;
+    margin: 100px 0 0 0;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
 }
 
 .user_name_email {
@@ -70,7 +69,8 @@
 
 .menu_options {
     width: 100%;
-    margin-top: 20px;
+    height: calc(100% - (20% + 100px));
+    position: relative;
 }
 
 .important_todos,
@@ -110,7 +110,25 @@
     border-bottom: 1px solid #ccc;
 }
 
+.lists_container {
+    overflow-y: auto;
+    height: 40%;
+}
+.lists_container::-webkit-scrollbar {
+    width: 2px;
+}
+.lists_container::-webkit-scrollbar-track {
+    background: none;
+}
+.lists_container::-webkit-scrollbar-thumb {
+    background: #336aeaa2;
+}
+.lists_container::-webkit-scrollbar-thumb:hover {
+    background: #336aea;
+}
+
 .todo_list {
+    width: calc(100% - 60px);
     display: flex;
     cursor: pointer;
     padding: 10px 20px;
@@ -141,9 +159,12 @@
     padding: 10px 20px;
     border-radius: 5px;
     background-color: #336aeaa2;
-    margin-top: 30px;
     transition: 0.2s;
     color: #fff;
+    position: absolute;
+    width: calc(100% - 40px);
+    left: 0;
+    bottom: 40px;
 }
 .create_list_btn:hover {
     background-color: #336aea;
@@ -155,13 +176,14 @@
 }
 
 @media (max-width: 1440px) {
-    .todo_logo {
-        font-size: 24px;
+    .todo_menu_container {
+        width: calc(20% - 20px);
+        padding: 0 20px;
     }
 
-    .user_inf {
-        flex-direction: column;
-        align-items: flex-start;
+    .todo_logo {
+        font-size: 24px;
+        left: 20px;
     }
 
     .user_name_email {
@@ -194,7 +216,7 @@
     .important_todos,
     .home_todos {
         padding: 10px 15px;
-        font-size: 14px;
+        font-size: 12px;
     }
 
     .todo_lists {
@@ -203,19 +225,20 @@
 
     .todo_list {
         padding: 10px 15px;
-        font-size: 14px;
+        font-size: 12px;
     }
 
     .create_list_btn {
-        padding: 10px 15px;
+        padding: 10px 20px;
         font-size: 14px;
+        bottom: 30px;
     }
 }
 
 @media (max-width: 1000px) {
     .todo_menu_container {
         width: calc(25% - 20px);
-        padding: 50px 20px;
+        padding: 0 20px;
     }
 
     .todo_logo {
