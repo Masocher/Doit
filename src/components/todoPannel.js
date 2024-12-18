@@ -8,6 +8,7 @@ import { useMediaQuery } from "react-responsive";
 import { useDispatch, useSelector } from "react-redux";
 import { openMenu } from "../store/Actions";
 import { User } from "./user";
+import { ListSettings } from "./listSettings";
 import img1 from "../images/todo-background/1.jpg";
 import img2 from "../images/todo-background/2.jpg";
 import img3 from "../images/todo-background/3.jpg";
@@ -48,6 +49,8 @@ export const TodoPannel = () => {
             <TodoMenu />
 
             <User />
+
+            <ListSettings />
 
             <div className="todo_content">
                 <img

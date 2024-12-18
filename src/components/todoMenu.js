@@ -10,7 +10,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { useMediaQuery } from "react-responsive";
 import { useDispatch, useSelector } from "react-redux";
-import { closeMenu, openUserBox } from "../store/Actions";
+import { closeMenu, openSettings, openUserBox } from "../store/Actions";
 import img1 from "../images/todo-background/1.jpg";
 import img2 from "../images/todo-background/2.jpg";
 import img3 from "../images/todo-background/3.jpg";
@@ -111,7 +111,10 @@ export const TodoMenu = () => {
                         <div>List 1</div>
 
                         <div className="list_edit_btn">
-                            <FontAwesomeIcon icon={faGear}></FontAwesomeIcon>
+                            <FontAwesomeIcon
+                                icon={faGear}
+                                onClick={() => dispatch(openSettings())}
+                            />
                         </div>
                     </div>
 
@@ -123,7 +126,10 @@ export const TodoMenu = () => {
                         <div>List 2</div>
 
                         <div className="list_edit_btn">
-                            <FontAwesomeIcon icon={faGear}></FontAwesomeIcon>
+                            <FontAwesomeIcon
+                                icon={faGear}
+                                onClick={() => dispatch(openSettings())}
+                            />
                         </div>
                     </div>
 
@@ -135,7 +141,10 @@ export const TodoMenu = () => {
                         <div>List 3</div>
 
                         <div className="list_edit_btn">
-                            <FontAwesomeIcon icon={faGear}></FontAwesomeIcon>
+                            <FontAwesomeIcon
+                                icon={faGear}
+                                onClick={() => dispatch(openSettings())}
+                            />
                         </div>
                     </div>
 
@@ -147,7 +156,10 @@ export const TodoMenu = () => {
                         <div>List 4</div>
 
                         <div className="list_edit_btn">
-                            <FontAwesomeIcon icon={faGear}></FontAwesomeIcon>
+                            <FontAwesomeIcon
+                                icon={faGear}
+                                onClick={() => dispatch(openSettings())}
+                            />
                         </div>
                     </div>
 
@@ -159,7 +171,10 @@ export const TodoMenu = () => {
                         <div>List 5</div>
 
                         <div className="list_edit_btn">
-                            <FontAwesomeIcon icon={faGear}></FontAwesomeIcon>
+                            <FontAwesomeIcon
+                                icon={faGear}
+                                onClick={() => dispatch(openSettings())}
+                            />
                         </div>
                     </div>
 
@@ -171,7 +186,10 @@ export const TodoMenu = () => {
                         <div>List 6</div>
 
                         <div className="list_edit_btn">
-                            <FontAwesomeIcon icon={faGear}></FontAwesomeIcon>
+                            <FontAwesomeIcon
+                                icon={faGear}
+                                onClick={() => dispatch(openSettings())}
+                            />
                         </div>
                     </div>
 
@@ -183,7 +201,10 @@ export const TodoMenu = () => {
                         <div>List 7</div>
 
                         <div className="list_edit_btn">
-                            <FontAwesomeIcon icon={faGear}></FontAwesomeIcon>
+                            <FontAwesomeIcon
+                                icon={faGear}
+                                onClick={() => dispatch(openSettings())}
+                            />
                         </div>
                     </div>
 
@@ -195,7 +216,10 @@ export const TodoMenu = () => {
                         <div>List 8</div>
 
                         <div className="list_edit_btn">
-                            <FontAwesomeIcon icon={faGear}></FontAwesomeIcon>
+                            <FontAwesomeIcon
+                                icon={faGear}
+                                onClick={() => dispatch(openSettings())}
+                            />
                         </div>
                     </div>
                 </div>

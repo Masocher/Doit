@@ -9,6 +9,8 @@ import {
     SELECT_BACKGROUND,
     UPDATE_BACKGROUND,
     CHANGE_THEME,
+    OPEN_SETTINGS,
+    CLOSE_SETTINGS,
 } from "./Types";
 
 import img1 from "../images/todo-background/1.jpg";
@@ -104,6 +106,21 @@ const themeReducer = (state = themeStatus, action) => {
     }
 };
 
+const listSettingsStatus = false;
+
+const listSettingsReducer = (state = listSettingsStatus, action) => {
+    switch (action.type) {
+        case OPEN_SETTINGS:
+            return (state = true);
+
+        case CLOSE_SETTINGS:
+            return (state = false);
+
+        default:
+            return state;
+    }
+};
+
 export const rootReducer = combineReducers({
     authStatusReducer,
     blackBoxReducer,
@@ -111,4 +128,5 @@ export const rootReducer = combineReducers({
     backgroundsReducer,
     updateBackgroundReducer,
     themeReducer,
+    listSettingsReducer,
 });

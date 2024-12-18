@@ -7,6 +7,8 @@ import {
     SELECT_BACKGROUND,
     UPDATE_BACKGROUND,
     CHANGE_THEME,
+    OPEN_SETTINGS,
+    CLOSE_SETTINGS,
 } from "./Types";
 
 export const logOut = () => {
@@ -39,4 +41,12 @@ export const updateBackground = (num) => {
 
 export const changeTheme = () => {
     return { type: CHANGE_THEME };
+};
+
+export const openSettings = () => {
+    return { type: OPEN_SETTINGS };
+};
+
+export const closeSettings = () => {
+    return { type: CLOSE_SETTINGS };
 };
