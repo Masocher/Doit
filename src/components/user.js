@@ -5,9 +5,10 @@ import {
     closeUserBox,
     selectBackground,
     updateBackground,
+    changeTheme,
 } from "../store/Actions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faClose } from "@fortawesome/free-solid-svg-icons";
+import { faClose, faMoon } from "@fortawesome/free-solid-svg-icons";
 
 export const User = () => {
     const userBoxStatus = useSelector(
@@ -17,6 +18,8 @@ export const User = () => {
     const backgrounds = useSelector(
         (rootReducer) => rootReducer.backgroundsReducer
     );
+
+    const themeStatus = useSelector((rootReducer) => rootReducer.themeReducer);
 
     const dispatch = useDispatch();
 
@@ -41,9 +44,18 @@ export const User = () => {
                         <div className="user_email_">Masocherr@gmail.com</div>
 
                         <div className="theme_btn">
-                            <div className="theme_change_btn">
+                            <div
+                                className={`theme_change_btn ${
+                                    themeStatus ? "show" : ""
+                                }`}
+                                onClick={() => dispatch(changeTheme())}
+                            >
                                 <div></div>
                             </div>
+
+                            <span>
+                                <FontAwesomeIcon icon={faMoon} />
+                            </span>
                         </div>
                     </div>
                 </div>

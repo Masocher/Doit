@@ -20,7 +20,7 @@
     border-radius: 50px 50px 0 0;
     transition: .4s;
     position: fixed;
-    bottom: -100%;
+    bottom: -200%;
 }
 .user_container.show .user_box {
     bottom: 0;
@@ -73,15 +73,28 @@
     font-family: PoppinsBold;
 }
 
+.theme_btn {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.theme_btn span {
+    margin-left: 10px;
+}
+
 .theme_change_btn {
-    width: 60px;
-    height: 25px;
+    width: 45px;
+    height: 20px;
     border-radius: 50px;
     background-color: #fff;
     cursor: pointer;
     border: 1px solid #000;
     position: relative;
-    margin-top: 20px;
+    transition: .4s;
+}
+.theme_change_btn.show {
+    background-color: #000;
 }
 
 .theme_change_btn div {
@@ -90,8 +103,13 @@
     background-color: #000;
     border-radius: 50%;
     position: absolute;
-    top: 7px;
-    left: 8px;
+    top: 4px;
+    left: 5px;
+    transition: .4s
+}
+.theme_change_btn.show div {
+    left: 28px;
+    background-color: #fff;
 }
 
 .gallery_section {

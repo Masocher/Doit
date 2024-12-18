@@ -8,6 +8,7 @@ import {
     CLOSE_USER_BOX,
     SELECT_BACKGROUND,
     UPDATE_BACKGROUND,
+    CHANGE_THEME,
 } from "./Types";
 
 import img1 from "../images/todo-background/1.jpg";
@@ -91,10 +92,23 @@ const updateBackgroundReducer = (state = backgroundNumber, action) => {
     }
 };
 
+const themeStatus = false;
+
+const themeReducer = (state = themeStatus, action) => {
+    switch (action.type) {
+        case CHANGE_THEME:
+            return (state = !state);
+
+        default:
+            return state;
+    }
+};
+
 export const rootReducer = combineReducers({
     authStatusReducer,
     blackBoxReducer,
     userBoxReducer,
     backgroundsReducer,
     updateBackgroundReducer,
+    themeReducer,
 });

@@ -6,6 +6,7 @@ import {
     CLOSE_USER_BOX,
     SELECT_BACKGROUND,
     UPDATE_BACKGROUND,
+    CHANGE_THEME,
 } from "./Types";
 
 export const logOut = () => {
@@ -34,4 +35,8 @@ export const selectBackground = (id) => {
 
 export const updateBackground = (num) => {
     return { type: UPDATE_BACKGROUND, payload: num };
+};
+
+export const changeTheme = () => {
+    return { type: CHANGE_THEME };
 };
