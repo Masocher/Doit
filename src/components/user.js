@@ -1,14 +1,20 @@
 import "../styles/components/user.css";
-import img1 from "../images/1.jpeg";
 import { useDispatch, useSelector } from "react-redux";
 import {
     closeUserBox,
     selectBackground,
     updateBackground,
     changeTheme,
+    closeMenu,
 } from "../store/Actions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose, faMoon } from "@fortawesome/free-solid-svg-icons";
+import img1 from "../images/todo-background/1.jpg";
+import img2 from "../images/todo-background/2.jpg";
+import img3 from "../images/todo-background/3.jpg";
+import img4 from "../images/todo-background/4.jpg";
+import img5 from "../images/todo-background/5.jpg";
+import img6 from "../images/todo-background/6.jpg";
 
 export const User = () => {
     const userBoxStatus = useSelector(
@@ -17,6 +23,10 @@ export const User = () => {
 
     const backgrounds = useSelector(
         (rootReducer) => rootReducer.backgroundsReducer
+    );
+
+    const backgroundNumber = useSelector(
+        (rootReducer) => rootReducer.updateBackgroundReducer
     );
 
     const themeStatus = useSelector((rootReducer) => rootReducer.themeReducer);
@@ -35,7 +45,22 @@ export const User = () => {
 
                 <div className="user_information_section">
                     <div className="user_profile_img">
-                        <img src={img1} alt="user-profile-image" />
+                        <img
+                            src={
+                                backgroundNumber === 0
+                                    ? img1
+                                    : backgroundNumber === 1
+                                    ? img2
+                                    : backgroundNumber === 2
+                                    ? img3
+                                    : backgroundNumber === 3
+                                    ? img4
+                                    : backgroundNumber === 4
+                                    ? img5
+                                    : img6
+                            }
+                            alt="user-profile-image"
+                        />
                     </div>
 
                     <div>
@@ -78,6 +103,7 @@ export const User = () => {
                                         dispatch(selectBackground(img.id));
                                         dispatch(updateBackground(img.id));
                                         dispatch(closeUserBox());
+                                        dispatch(closeMenu());
                                     }}
                                 />
                                 <div className="selected_title">Selected</div>

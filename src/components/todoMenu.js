@@ -1,5 +1,4 @@
 import "../styles/components/todoMenu.css";
-import img1 from "../images/1.jpeg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faStar,
@@ -12,10 +11,20 @@ import {
 import { useMediaQuery } from "react-responsive";
 import { useDispatch, useSelector } from "react-redux";
 import { closeMenu, openUserBox } from "../store/Actions";
+import img1 from "../images/todo-background/1.jpg";
+import img2 from "../images/todo-background/2.jpg";
+import img3 from "../images/todo-background/3.jpg";
+import img4 from "../images/todo-background/4.jpg";
+import img5 from "../images/todo-background/5.jpg";
+import img6 from "../images/todo-background/6.jpg";
 
 export const TodoMenu = () => {
     const menuStatus = useSelector(
         (rootReducer) => rootReducer.blackBoxReducer
+    );
+
+    const backgroundNumber = useSelector(
+        (rootReducer) => rootReducer.updateBackgroundReducer
     );
 
     const dispatch = useDispatch();
@@ -48,7 +57,22 @@ export const TodoMenu = () => {
                 </div>
 
                 <div className="user_profile_image">
-                    <img src={img1} alt="user-profile-image" />
+                    <img
+                        src={
+                            backgroundNumber === 0
+                                ? img1
+                                : backgroundNumber === 1
+                                ? img2
+                                : backgroundNumber === 2
+                                ? img3
+                                : backgroundNumber === 3
+                                ? img4
+                                : backgroundNumber === 4
+                                ? img5
+                                : img6
+                        }
+                        alt="user-profile-image"
+                    />
                 </div>
 
                 <div className="user_name_email">
