@@ -309,7 +309,7 @@
     }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 425px) {
     .user_information_section {
         width: calc(100% - 30px);
         padding: 30px 15px;
