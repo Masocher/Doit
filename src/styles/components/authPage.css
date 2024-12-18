@@ -10,7 +10,7 @@
 }
 
 .logo {
-    color: #336AEA;
+    color: #000;
     font-family: PoppinsBold;
     font-size: 60px;
     display: flex;
@@ -62,11 +62,11 @@
     border-radius: 5px;
 }
 .log_in_btn:hover {
-    background-color: #336AEA;
+    background-color: #000;
     color: #fff;
 }
 .sign_up_btn:hover {
-    background-color: #336AEA;
+    background-color: #000;
     color: #fff;
 }
 

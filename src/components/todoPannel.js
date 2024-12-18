@@ -5,15 +5,30 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faBars } from "@fortawesome/free-solid-svg-icons";
 import { BlackBox } from "./blackBox";
 import { useMediaQuery } from "react-responsive";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { openMenu } from "../store/Actions";
+import { User } from "./user";
+import img1 from "../images/todo-background/1.jpg";
+import img2 from "../images/todo-background/2.jpg";
+import img3 from "../images/todo-background/3.jpg";
+import img4 from "../images/todo-background/4.jpg";
+import img5 from "../images/todo-background/5.jpg";
+import img6 from "../images/todo-background/6.jpg";
 
 export const TodoPannel = () => {
     const dispatch = useDispatch();
 
+    const menuStatus = useSelector(
+        (rootReducer) => rootReducer.blackBoxReducer
+    );
+
     const tabletSize = useMediaQuery({
         query: "(max-width: 768px)",
     });
+
+    const backgroundNumber = useSelector(
+        (rootReducer) => rootReducer.updateBackgroundReducer
+    );
 
     return (
         <div className="todo_pannel">
@@ -28,11 +43,31 @@ export const TodoPannel = () => {
                 )}
             </div>
 
-            <BlackBox />
+            <BlackBox status={menuStatus} />
 
             <TodoMenu />
 
+            <User />
+
             <div className="todo_content">
+                <img
+                    className="background_image_box"
+                    src={
+                        backgroundNumber === 0
+                            ? img1
+                            : backgroundNumber === 1
+                            ? img2
+                            : backgroundNumber === 2
+                            ? img3
+                            : backgroundNumber === 3
+                            ? img4
+                            : backgroundNumber === 4
+                            ? img5
+                            : img6
+                    }
+                    alt="background-img"
+                />
+
                 <div className="tasks_title">
                     <div>
                         <span>Tasks</span>

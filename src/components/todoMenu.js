@@ -11,7 +11,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { useMediaQuery } from "react-responsive";
 import { useDispatch, useSelector } from "react-redux";
-import { closeMenu } from "../store/Actions";
+import { closeMenu, openUserBox } from "../store/Actions";
 
 export const TodoMenu = () => {
     const menuStatus = useSelector(
@@ -40,6 +40,13 @@ export const TodoMenu = () => {
             <div className="todo_logo">Doit</div>
 
             <div className="user_inf">
+                <div
+                    className="user_box_icon"
+                    onClick={() => dispatch(openUserBox())}
+                >
+                    <FontAwesomeIcon icon={faGear} />
+                </div>
+
                 <div className="user_profile_image">
                     <img src={img1} alt="user-profile-image" />
                 </div>
