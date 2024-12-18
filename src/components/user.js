@@ -97,6 +97,7 @@ export const User = () => {
                                 key={img.id}
                             >
                                 <img
+                                    loading="lazy"
                                     src={img.src}
                                     alt="background-img"
                                     onClick={() => {
