@@ -98,6 +98,7 @@
     cursor: pointer;
     padding: 10px 20px;
     border-radius: 5px;
+    color: #000;
 }
 .home_todos.show,
 .important_todos.show {
@@ -156,8 +157,13 @@
     padding: 10px 20px;
     border-radius: 5px;
     position: relative;
+    color: #000;
+    margin-bottom: 5px;
 }
 .todo_list.show {
+    background-color: #eef5ff;
+}
+.todo_list:hover {
     background-color: #eef5ff;
 }
 

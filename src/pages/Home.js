@@ -7,7 +7,7 @@ export const Home = () => {
 
     return (
         <div className="home_container">
-            {authStatus ? <TodoPannel /> : <AuthPage />}
+            {authStatus ? <TodoPannel status="todos" /> : <AuthPage />}
         </div>
     );
 };
