@@ -4,6 +4,7 @@ import { Home } from "./pages/Home";
 import { LogIn } from "./pages/LogIn";
 import { SignUp } from "./pages/SignUp";
 import { List } from "./pages/List";
+import { Toaster } from "react-hot-toast";
 
 export const App = () => {
     return (
@@ -15,6 +16,8 @@ export const App = () => {
                 <Route path="/log-in" element={<LogIn />} />
                 <Route path="/sign-up" element={<SignUp />} />
             </Routes>
+
+            <Toaster position="top-right" reverseOrder={false} />
         </div>
     );
 };

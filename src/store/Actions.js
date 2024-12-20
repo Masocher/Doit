@@ -9,6 +9,7 @@ import {
     CHANGE_THEME,
     OPEN_SETTINGS,
     CLOSE_SETTINGS,
+    SIGN_UP,
 } from "./Types";
 
 export const logOut = () => {
@@ -49,4 +50,16 @@ export const openSettings = () => {
 
 export const closeSettings = () => {
     return { type: CLOSE_SETTINGS };
+};
+
+export const signUp = (nickname, email, password, password2) => {
+    return {
+        type: SIGN_UP,
+        payload: {
+            nickname,
+            email,
+            password,
+            password2,
+        },
+    };
 };

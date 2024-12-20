@@ -4,12 +4,15 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
+import { useDispatch } from "react-redux";
+import { signUp } from "../store/Actions";
 
 export const SignUp = () => {
     const [titleS, setTitleS] = useState(false);
     const [input1S, setInput1S] = useState(false);
     const [input2S, setInput2S] = useState(false);
     const [input3S, setInput3S] = useState(false);
+    const [input4S, setInput4S] = useState(false);
     const [submitBtn, setSubmitBtn] = useState(false);
     const [shortLinkS, setShortLinkS] = useState(false);
 
@@ -30,12 +33,27 @@ export const SignUp = () => {
     }, 500);
 
     setInterval(() => {
-        setSubmitBtn(true);
+        setInput4S(true);
     }, 600);
 
     setInterval(() => {
-        setShortLinkS(true);
+        setSubmitBtn(true);
     }, 700);
+
+    setInterval(() => {
+        setShortLinkS(true);
+    }, 800);
+
+    const dispatch = useDispatch();
+
+    const [nickname, setNickname] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [password2, setPassword2] = useState("");
+
+    const submitForm = (nickname, email, password, password2) => {
+        dispatch(signUp(nickname, email, password, password2));
+    };
 
     return (
         <div className="login_container">
@@ -52,27 +70,49 @@ export const SignUp = () => {
                     </div>
                 </Link>
 
-                <form action={"#"}>
+                <form onSubmit={(e) => e.preventDefault()}>
                     <div className={`title ${titleS ? "show" : ""}`}>
                         Sign Up
                     </div>
 
                     <div className={`input_box ${input1S ? "show" : ""}`}>
                         <div className="lable">Nickname</div>
-                        <input type="text" />
+                        <input
+                            type="text"
+                            onChange={(e) => setNickname(e.target.value)}
+                        />
                     </div>
 
                     <div className={`input_box ${input2S ? "show" : ""}`}>
                         <div className="lable">Email</div>
-                        <input type="email" />
+                        <input
+                            type="email"
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
                     </div>
 
                     <div className={`input_box ${input3S ? "show" : ""}`}>
                         <div className="lable">Password</div>
-                        <input type="password" />
+                        <input
+                            type="password"
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
                     </div>
 
-                    <button className={`${submitBtn ? "show" : ""}`}>
+                    <div className={`input_box ${input4S ? "show" : ""}`}>
+                        <div className="lable">Confirm password</div>
+                        <input
+                            type="password"
+                            onChange={(e) => setPassword2(e.target.value)}
+                        />
+                    </div>
+
+                    <button
+                        className={`${submitBtn ? "show" : ""}`}
+                        onClick={() =>
+                            submitForm(nickname, email, password, password2)
+                        }
+                    >
                         submit
                     </button>
 
