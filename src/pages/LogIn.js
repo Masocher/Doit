@@ -4,6 +4,8 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
+import { useDispatch } from "react-redux";
+import { logIn } from "../store/Actions";
 
 export const LogIn = () => {
     const [titleS, setTitleS] = useState(false);
@@ -32,6 +34,15 @@ export const LogIn = () => {
         setShortLinkS(true);
     }, 600);
 
+    const dispatch = useDispatch();
+
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    const submitForm = (email, password) => {
+        dispatch(logIn(email, password));
+    };
+
     return (
         <div className="login_container">
             <div className="back_btn"></div>
@@ -42,27 +53,36 @@ export const LogIn = () => {
                         <span>
                             <FontAwesomeIcon icon={faAngleLeft} />
                         </span>
-                        
+
                         <div>Back</div>
                     </div>
                 </Link>
 
-                <form action={"#"}>
+                <form onSubmit={(e) => e.preventDefault()}>
                     <div className={`title ${titleS ? "show" : ""}`}>
                         Log In
                     </div>
 
                     <div className={`input_box ${input2S ? "show" : ""}`}>
                         <div className="lable">Email</div>
-                        <input type="email" />
+                        <input
+                            type="email"
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
                     </div>
 
                     <div className={`input_box ${input3S ? "show" : ""}`}>
                         <div className="lable">Password</div>
-                        <input type="password" />
+                        <input
+                            type="password"
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
                     </div>
 
-                    <button className={`${submitBtn ? "show" : ""}`}>
+                    <button
+                        className={`${submitBtn ? "show" : ""}`}
+                        onClick={() => submitForm(email, password)}
+                    >
                         submit
                     </button>
 

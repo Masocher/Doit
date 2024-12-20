@@ -3,7 +3,6 @@ import axios from "axios";
 import toast from "react-hot-toast";
 
 import {
-    LOG_OUT,
     OPEN_MENU,
     CLOSE_MENU,
     OPEN_USER_BOX,
@@ -14,6 +13,7 @@ import {
     OPEN_SETTINGS,
     CLOSE_SETTINGS,
     SIGN_UP,
+    LOG_IN,
 } from "./Types";
 
 import img1 from "../images/todo-background/1.jpg";
@@ -114,10 +114,6 @@ const listSettingsReducer = (state = listSettingsStatus, action) => {
 
 const isAuthenticated = false;
 
-const authStatusReducer = (state = isAuthenticated, action) => {
-    return state;
-};
-
 const signUpReducer = (state = isAuthenticated, action) => {
     switch (action.type) {
         case SIGN_UP:
@@ -169,8 +165,58 @@ const signUpReducer = (state = isAuthenticated, action) => {
     }
 };
 
+const keepUser = (token, state) => {
+    axios.defaults.headers.common["Authorization"] = "Bearer " + token;
+    localStorage.setItem("token", token);
+    state = true;
+    localStorage.setItem("isAuthenticated", state);
+};
+
+const logInReducer = (state = isAuthenticated, action) => {
+    switch (action.type) {
+        case LOG_IN:
+            axios.defaults.headers.common["Authorization"] = "";
+            axios
+                .post("https://doit.liara.run/api/auth/token/login/", {
+                    email: action.payload.email,
+                    password: action.payload.password,
+                })
+                .then((response) => {
+                    keepUser(response.data.access, state);
+                    console.log("you are logging in ...");
+                    localStorage.setItem("refreshToken", response.data.refresh);
+                    toast.success("با موفقیت وارد شدید");
+                    console.log("you logged in !");
+                    setTimeout(() => {
+                        window.location.replace("/");
+                    }, 1000);
+                })
+                .catch((error) => {
+                    if (error.response) {
+                        console.log(error.response);
+                        if (error.response.data.detail) {
+                            toast.error(error.response.data.detail);
+                        } else if (error.response.data.email) {
+                            toast.error("Email : " + error.response.data.email);
+                        } else if (error.response.data.password) {
+                            toast.error(
+                                "Password : " + error.response.data.password
+                            );
+                        }
+                    } else if (error.request) {
+                        console.log("request error : " + error.request);
+                    } else {
+                        console.log("error message : " + error.message);
+                    }
+                });
+            return state;
+
+        default:
+            return state;
+    }
+};
+
 export const rootReducer = combineReducers({
-    authStatusReducer,
     blackBoxReducer,
     userBoxReducer,
     backgroundsReducer,
@@ -178,4 +224,5 @@ export const rootReducer = combineReducers({
     themeReducer,
     listSettingsReducer,
     signUpReducer,
+    logInReducer,
 });

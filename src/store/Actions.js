@@ -1,5 +1,4 @@
 import {
-    LOG_OUT,
     OPEN_MENU,
     CLOSE_MENU,
     OPEN_USER_BOX,
@@ -10,11 +9,8 @@ import {
     OPEN_SETTINGS,
     CLOSE_SETTINGS,
     SIGN_UP,
+    LOG_IN,
 } from "./Types";
-
-export const logOut = () => {
-    return { type: LOG_OUT };
-};
 
 export const openMenu = () => {
     return { type: OPEN_MENU };
@@ -60,6 +56,16 @@ export const signUp = (nickname, email, password, password2) => {
             email,
             password,
             password2,
+        },
+    };
+};
+
+export const logIn = (email, password) => {
+    return {
+        type: LOG_IN,
+        payload: {
+            email,
+            password,
         },
     };
 };

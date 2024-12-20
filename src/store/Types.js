@@ -9,3 +9,4 @@ export const CHANGE_THEME = "CHANGE_THEME";
 export const OPEN_SETTINGS = "OPEN_SETTINGS";
 export const CLOSE_SETTINGS = "CLOSE_SETTINGS";
 export const SIGN_UP = "SIGN_UP";
+export const LOG_IN = "LOG_IN";
