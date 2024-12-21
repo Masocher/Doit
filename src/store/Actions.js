@@ -10,6 +10,8 @@ import {
     CLOSE_SETTINGS,
     SIGN_UP,
     LOG_IN,
+    LOG_OUT,
+    ON_START,
 } from "./Types";
 
 export const openMenu = () => {
@@ -68,4 +70,12 @@ export const logIn = (email, password) => {
             password,
         },
     };
+};
+
+export const logOut = () => {
+    return { type: LOG_OUT };
+};
+
+export const onStart = () => {
+    return { type: ON_START };
 };

@@ -47,6 +47,10 @@
     color: #000;
 }
 
+.log_out_btn {
+    top: 110px;
+}
+
 .user_information_section {
     width: calc(100% - 100px);
     background-color: #eef5ff;

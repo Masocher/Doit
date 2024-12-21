@@ -5,8 +5,20 @@ import { LogIn } from "./pages/LogIn";
 import { SignUp } from "./pages/SignUp";
 import { List } from "./pages/List";
 import { Toaster } from "react-hot-toast";
+import { onStart } from "./store/Actions";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 export const App = () => {
+    const dispatch = useDispatch();
+
+    const location = useLocation();
+
+    useEffect(() => {
+        dispatch(onStart());
+    }, [location.pathname]);
+
     return (
         <div className="App">
             <Routes>

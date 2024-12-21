@@ -6,9 +6,14 @@ import {
     updateBackground,
     changeTheme,
     closeMenu,
+    logOut,
 } from "../store/Actions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faClose, faMoon } from "@fortawesome/free-solid-svg-icons";
+import {
+    faClose,
+    faMoon,
+    faArrowRightFromBracket,
+} from "@fortawesome/free-solid-svg-icons";
 import img1 from "../images/todo-background/1.jpg";
 import img2 from "../images/todo-background/2.jpg";
 import img3 from "../images/todo-background/3.jpg";
@@ -41,6 +46,13 @@ export const User = () => {
                     onClick={() => dispatch(closeUserBox())}
                 >
                     <FontAwesomeIcon icon={faClose} />
+                </div>
+
+                <div
+                    className="user_close_btn log_out_btn"
+                    onClick={() => dispatch(logOut())}
+                >
+                    <FontAwesomeIcon icon={faArrowRightFromBracket} />
                 </div>
 
                 <div className="user_information_section">

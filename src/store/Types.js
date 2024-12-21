@@ -1,4 +1,3 @@
-export const LOG_OUT = "LOG_OUT";
 export const OPEN_MENU = "OPEN_MENU";
 export const CLOSE_MENU = "CLOSE_MENU";
 export const OPEN_USER_BOX = "OPEN_USER_BOX";
@@ -10,3 +9,5 @@ export const OPEN_SETTINGS = "OPEN_SETTINGS";
 export const CLOSE_SETTINGS = "CLOSE_SETTINGS";
 export const SIGN_UP = "SIGN_UP";
 export const LOG_IN = "LOG_IN";
+export const LOG_OUT = "LOG_OUT";
+export const ON_START = "ON_START";
