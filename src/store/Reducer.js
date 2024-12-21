@@ -349,7 +349,7 @@ const homeTasksReducer = (state = homeTasks, action) => {
                     console.log(state);
                 })
                 .catch((error) => console.log(error));
-                console.log(state);
+                console.log(state)
             return state;
 
         default:
