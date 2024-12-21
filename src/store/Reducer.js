@@ -16,6 +16,7 @@ import {
     LOG_IN,
     LOG_OUT,
     ON_START,
+    GET_TODOS,
 } from "./Types";
 
 import img1 from "../images/todo-background/1.jpg";
@@ -221,15 +222,28 @@ const logInReducer = (state = isAuthenticated, action) => {
 const logOutReducer = (state = isAuthenticated, action) => {
     switch (action.type) {
         case LOG_OUT:
-            localStorage.removeItem("refreshToken");
-            localStorage.removeItem("token");
-            localStorage.removeItem("user");
-            localStorage.removeItem("isAuthenticated");
-            axios.defaults.headers.common["Authorization"] = "";
-            toast.success("Successfully logged out !");
-            setTimeout(() => {
-                window.location.replace("/");
-            }, 1000);
+            const refreshToken = localStorage.getItem("refreshToken");
+            axios
+                .post("https://otanix-api.liara.run/api/auth/token/logout/", {
+                    refresh: refreshToken,
+                })
+                .then((response) => {
+                    localStorage.removeItem("refreshToken");
+                    localStorage.removeItem("token");
+                    localStorage.removeItem("user");
+                    localStorage.removeItem("isAuthenticated");
+                    axios.defaults.headers.common["Authorization"] = "";
+                    toast.success("Successfully logged out !");
+                    setTimeout(() => {
+                        window.location.replace("/");
+                    }, 1000);
+                })
+                .catch((error) => {
+                    console.log(
+                        "error while removig refresh token : " +
+                            error.response.data
+                    );
+                });
             return state;
 
         default:
@@ -238,21 +252,28 @@ const logOutReducer = (state = isAuthenticated, action) => {
 };
 
 const logOutFunction = (state = isAuthenticated) => {
-    localStorage.removeItem("refreshToken");
-    localStorage.removeItem("token");
-    localStorage.setItem("isAuthenticated", false);
-    axios.defaults.headers.common["Authorization"] = "";
-    toast.error("You have been logged out of your account due to a problem !", {
-        style: {
-            borderRadius: "10px",
-            background: `${themeStatus ? "#fff" : "#232328"}`,
-            color: `${themeStatus ? "#000" : "#fff"}`,
-            padding: "10px 20px 10px 15px",
-        },
-    });
-    setTimeout(() => {
-        window.location.replace("/");
-    }, 1000);
+    const refreshToken = localStorage.getItem("refreshToken");
+    axios
+        .post("https://doit.liara.run/api/auth/token/logout/", {
+            refresh: refreshToken,
+        })
+        .then((response) => {
+            localStorage.removeItem("refreshToken");
+            localStorage.removeItem("token");
+            localStorage.setItem("isAuthenticated", false);
+            axios.defaults.headers.common["Authorization"] = "";
+            toast.error(
+                "You have been logged out of your account due to a problem !"
+            );
+            setTimeout(() => {
+                window.location.replace("/");
+            }, 1000);
+        })
+        .catch((error) => {
+            console.log(
+                "error while removig refresh token : " + error.response.data
+            );
+        });
     return state;
 };
 
@@ -316,6 +337,26 @@ const onStart = (state = isAuthenticated, action) => {
     }
 };
 
+const homeTasks = null;
+
+const homeTasksReducer = (state = homeTasks, action) => {
+    switch (action.type) {
+        case GET_TODOS:
+            axios
+                .get("https://doit.liara.run/api/tasks/")
+                .then((response) => {
+                    state = response.data
+                    console.log(state);
+                })
+                .catch((error) => console.log(error));
+                console.log(state);
+            return state;
+
+        default:
+            return state;
+    }
+};
+
 export const rootReducer = combineReducers({
     blackBoxReducer,
     userBoxReducer,
@@ -327,4 +368,5 @@ export const rootReducer = combineReducers({
     logInReducer,
     logOutReducer,
     onStart,
+    homeTasksReducer
 });

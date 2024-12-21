@@ -22,7 +22,6 @@ export const App = () => {
     return (
         <div className="App">
             <Routes>
-                {/* <Route path="/" element={<Layout />} /> */}
                 <Route path="/lists/:listUrlSlug" element={<List />} />
                 <Route path="/" element={<Home />} />
                 <Route path="/log-in" element={<LogIn />} />

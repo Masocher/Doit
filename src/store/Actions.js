@@ -12,6 +12,8 @@ import {
     LOG_IN,
     LOG_OUT,
     ON_START,
+    ADD_TASK,
+    GET_TODOS,
 } from "./Types";
 
 export const openMenu = () => {
@@ -78,4 +80,12 @@ export const logOut = () => {
 
 export const onStart = () => {
     return { type: ON_START };
+};
+
+export const addTask = (title) => {
+    return { type: ADD_TASK, name: title };
+};
+
+export const getTodos = () => {
+    return { type: GET_TODOS };
 };

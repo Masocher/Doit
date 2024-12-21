@@ -6,7 +6,7 @@ import { faPlus, faBars } from "@fortawesome/free-solid-svg-icons";
 import { BlackBox } from "./blackBox";
 import { useMediaQuery } from "react-responsive";
 import { useDispatch, useSelector } from "react-redux";
-import { openMenu } from "../store/Actions";
+import { addTask, getTodos, openMenu } from "../store/Actions";
 import { User } from "./user";
 import { ListSettings } from "./listSettings";
 import img1 from "../images/todo-background/1.jpg";
@@ -15,6 +15,8 @@ import img3 from "../images/todo-background/3.jpg";
 import img4 from "../images/todo-background/4.jpg";
 import img5 from "../images/todo-background/5.jpg";
 import img6 from "../images/todo-background/6.jpg";
+import { useState } from "react";
+import toast from "react-hot-toast";
 
 export const TodoPannel = ({ status }) => {
     const dispatch = useDispatch();
@@ -30,6 +32,18 @@ export const TodoPannel = ({ status }) => {
     const backgroundNumber = useSelector(
         (rootReducer) => rootReducer.updateBackgroundReducer
     );
+
+    const [todoTitle, setTodoTitle] = useState("");
+
+    const addTaskFunction = (title) => {
+        if (title === "") {
+            toast.error("Please write something.");
+        } else {
+            console.log("added todo");
+            dispatch(addTask(title));
+            setTodoTitle("");
+        }
+    };
 
     if (status === "list") {
         return (
@@ -77,8 +91,15 @@ export const TodoPannel = ({ status }) => {
 
                     <Todos />
 
-                    <form action={"#"} className="add_todo">
-                        <input type="text" placeholder="Add a new task" />
+                    <form
+                        className="add_todo"
+                        onSubmit={(e) => e.preventDefault()}
+                    >
+                        <input
+                            type="text"
+                            placeholder="Add a new task"
+                            onChange={(e) => setTodoTitle(e.target.value)}
+                        />
 
                         <span>
                             <FontAwesomeIcon icon={faPlus} />
@@ -149,10 +170,18 @@ export const TodoPannel = ({ status }) => {
 
                     <Todos />
 
-                    <form action={"#"} className="add_todo">
-                        <input type="text" placeholder="Add a new task" />
+                    <form
+                        className="add_todo"
+                        onSubmit={(e) => e.preventDefault()}
+                    >
+                        <input
+                            type="text"
+                            value={todoTitle}
+                            placeholder="Add a new task"
+                            onChange={(e) => setTodoTitle(e.target.value)}
+                        />
 
-                        <span>
+                        <span onClick={() => addTaskFunction(todoTitle)}>
                             <FontAwesomeIcon icon={faPlus} />
                         </span>
                     </form>
