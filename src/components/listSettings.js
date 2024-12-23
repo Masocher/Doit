@@ -2,7 +2,12 @@ import "../styles/components/listSettings.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
-import { closeSettings } from "../store/Actions";
+import {
+    closeSettings,
+    deleteList,
+    changeNameList,
+    renameList,
+} from "../store/Actions";
 
 export const ListSettings = () => {
     const dispatch = useDispatch();
@@ -10,6 +15,16 @@ export const ListSettings = () => {
     const settingsStatus = useSelector(
         (rootReducer) => rootReducer.listSettingsReducer
     );
+
+    const selectedList = useSelector(
+        (rootReducer) => rootReducer.selectListReducer
+    );
+    console.log(selectedList);
+
+    const listName = useSelector(
+        (rootReducer) => rootReducer.changeNameListReducer
+    );
+    console.log(listName);
 
     return (
         <div className={`settings_container ${settingsStatus ? "show" : ""}`}>
@@ -24,14 +39,37 @@ export const ListSettings = () => {
                 <div className="list_settings_title">Change list name</div>
 
                 <div className="list_settings_bottom_section">
-                    <form action="#">
-                        <input type="text" />
+                    <form onSubmit={(e) => e.preventDefault()}>
+                        <input
+                            type="text"
+                            value={listName}
+                            onChange={(e) =>
+                                dispatch(changeNameList(e.target.value))
+                            }
+                        />
                     </form>
 
-                    <div className="list_delete_btn">Delete list</div>
+                    <div
+                        className="list_delete_btn"
+                        onClick={() => {
+                            dispatch(deleteList(selectedList));
+                            dispatch(closeSettings());
+                            window.location.replace("/");
+                        }}
+                    >
+                        Delete list
+                    </div>
                 </div>
 
-                <div className="change_list_name_btn">Change name</div>
+                <div
+                    className="change_list_name_btn"
+                    onClick={() => {
+                        dispatch(renameList(selectedList, listName));
+                        dispatch(closeSettings());
+                    }}
+                >
+                    Change name
+                </div>
             </div>
         </div>
     );

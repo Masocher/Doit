@@ -15,6 +15,7 @@ import {
     closeMenu,
     openSettings,
     openUserBox,
+    selectList,
 } from "../store/Actions";
 import img1 from "../images/todo-background/1.jpg";
 import img2 from "../images/todo-background/2.jpg";
@@ -148,8 +149,17 @@ export const TodoMenu = () => {
                                 to={`/lists/${list.id}`}
                                 style={{ textDecoration: "none" }}
                                 key={list.id}
+                                onClick={() =>
+                                    dispatch(selectList(list.name, list.id))
+                                }
                             >
-                                <div className="todo_list">
+                                <div
+                                    className={`todo_list ${
+                                        location.pathname.includes(list.id)
+                                            ? "show"
+                                            : ""
+                                    }`}
+                                >
                                     <span>
                                         <FontAwesomeIcon icon={faBars} />
                                     </span>

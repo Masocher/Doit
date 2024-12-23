@@ -19,6 +19,10 @@ import {
     ADD_LIST,
     ADD_LIST_TASK,
     COMPLETE_TASK,
+    DELETE_LIST,
+    SELECT_LIST,
+    CHANGE_NAME_LIST,
+    RENAME_LIST,
 } from "./Types";
 
 export const openMenu = () => {
@@ -113,4 +117,20 @@ export const addList = () => {
 
 export const addListTask = (listId, taskName) => {
     return { type: ADD_LIST_TASK, id: listId, name: taskName };
+};
+
+export const deleteList = (listId) => {
+    return { type: DELETE_LIST, id: listId };
+};
+
+export const selectList = (listTitle, listId) => {
+    return { type: SELECT_LIST, title: listTitle, id: listId };
+};
+
+export const changeNameList = (title) => {
+    return { type: CHANGE_NAME_LIST, name: title };
+};
+
+export const renameList = (listId, title) => {
+    return { type: RENAME_LIST, id: listId, name: title };
 };

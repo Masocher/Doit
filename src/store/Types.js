@@ -18,3 +18,7 @@ export const GIVE_GET_STAR = "GIVE_GET_STAR";
 export const ADD_LIST = "ADD_LIST";
 export const ADD_LIST_TASK = "ADD_LIST_TASK";
 export const COMPLETE_TASK = "COMPLETE_TASK";
+export const DELETE_LIST = "DELETE_LIST";
+export const SELECT_LIST = "SELECT_LIST";
+export const CHANGE_NAME_LIST = "CHANGE_NAME_LIST";
+export const RENAME_LIST = "RENAME_LIST";

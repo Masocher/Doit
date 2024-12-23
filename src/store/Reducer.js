@@ -22,6 +22,10 @@ import {
     ADD_LIST,
     ADD_LIST_TASK,
     COMPLETE_TASK,
+    DELETE_LIST,
+    SELECT_LIST,
+    CHANGE_NAME_LIST,
+    RENAME_LIST,
 } from "./Types";
 
 import img1 from "../images/todo-background/1.jpg";
@@ -441,6 +445,67 @@ const addTaskListReducer = (state = tasksState, action) => {
     }
 };
 
+const deleteListReducer = (state = tasksState, action) => {
+    switch (action.type) {
+        case DELETE_LIST:
+            axios
+                .delete(`https://doit.liara.run/api/lists/${action.id}/`)
+                .then((response) => console.log(response))
+                .catch((error) => console.log(error));
+
+            return state;
+
+        default:
+            return state;
+    }
+};
+
+const selectedListId = null;
+
+const selectListReducer = (state = selectedListId, action) => {
+    switch (action.type) {
+        case SELECT_LIST:
+            state = action.id;
+            console.log(state);
+
+            return state;
+
+        default:
+            return state;
+    }
+};
+
+const selectedListName = null;
+
+const changeNameListReducer = (state = selectedListName, action) => {
+    switch (action.type) {
+        case CHANGE_NAME_LIST:
+            state = action.name;
+            console.log(state);
+
+            return state;
+
+        default:
+            return state;
+    }
+};
+
+const submitListName = (state = selectedListName, action) => {
+    switch (action.type) {
+        case RENAME_LIST:
+            axios
+                .patch(`https://doit.liara.run/api/lists/${action.id}/`, {
+                    name: action.name,
+                })
+                .then((response) => console.log(response))
+                .catch((error) => console.log(error));
+            return state;
+
+        default:
+            return state;
+    }
+};
+
 export const rootReducer = combineReducers({
     blackBoxReducer,
     userBoxReducer,
@@ -458,4 +523,8 @@ export const rootReducer = combineReducers({
     addListReducer,
     addTaskListReducer,
     completeTaskReducer,
+    deleteListReducer,
+    selectListReducer,
+    changeNameListReducer,
+    submitListName,
 });
