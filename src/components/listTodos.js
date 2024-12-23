@@ -2,18 +2,23 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck, faStar, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { completeTask, deleteTask, giveGetStar } from "../store/Actions";
+import { deleteTask, giveGetStar, completeTask } from "../store/Actions";
 import { useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
 
-export const Todos = () => {
+export const ListTodos = () => {
+    let { listUrlSlug } = useParams();
+
     const dispatch = useDispatch();
 
-    const [homeTasks, setHomeTasks] = useState([]);
+    const [listTasks, setListTasks] = useState([]);
 
-    const homeTasksReducer = async () => {
+    const listTasksReducer = async () => {
         try {
-            let response = await axios.get("https://doit.liara.run/api/tasks/");
-            setHomeTasks(response.data);
+            let response = await axios.get(
+                `https://doit.liara.run/api/lists/${listUrlSlug}/`
+            );
+            setListTasks(response.data);
         } catch (error) {
             console.log(error);
         }
@@ -21,14 +26,14 @@ export const Todos = () => {
 
     useEffect(() => {
         setTimeout(() => {
-            homeTasksReducer();
+            listTasksReducer();
         }, 1000);
     });
 
     return (
         <div className="todos_container">
-            {homeTasks.length > 0 ? (
-                homeTasks.map((task) => (
+            {listTasks.tasks ? (
+                listTasks.tasks.map((task) => (
                     <div className="todo_box" key={task.id}>
                         <div className="todo_left_section">
                             <div

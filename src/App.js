@@ -4,6 +4,7 @@ import { Home } from "./pages/Home";
 import { LogIn } from "./pages/LogIn";
 import { SignUp } from "./pages/SignUp";
 import { List } from "./pages/List";
+import { Importants } from "./pages/Importants";
 import { Toaster } from "react-hot-toast";
 import { onStart } from "./store/Actions";
 import { useDispatch } from "react-redux";
@@ -23,6 +24,7 @@ export const App = () => {
         <div className="App">
             <Routes>
                 <Route path="/lists/:listUrlSlug" element={<List />} />
+                <Route path="/importants" element={<Importants />} />
                 <Route path="/" element={<Home />} />
                 <Route path="/log-in" element={<LogIn />} />
                 <Route path="/sign-up" element={<SignUp />} />

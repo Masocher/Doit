@@ -6,7 +6,7 @@ import { faPlus, faBars } from "@fortawesome/free-solid-svg-icons";
 import { BlackBox } from "./blackBox";
 import { useMediaQuery } from "react-responsive";
 import { useDispatch, useSelector } from "react-redux";
-import { addTask, getTodos, openMenu } from "../store/Actions";
+import { addTask, openMenu, addListTask } from "../store/Actions";
 import { User } from "./user";
 import { ListSettings } from "./listSettings";
 import img1 from "../images/todo-background/1.jpg";
@@ -17,8 +17,13 @@ import img5 from "../images/todo-background/5.jpg";
 import img6 from "../images/todo-background/6.jpg";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { ListTodos } from "./listTodos";
+import { ImportantTodos } from "./importantTodos";
+import { useParams } from "react-router-dom";
 
 export const TodoPannel = ({ status }) => {
+    let { listUrlSlug } = useParams();
+    
     const dispatch = useDispatch();
 
     const menuStatus = useSelector(
@@ -45,92 +50,39 @@ export const TodoPannel = ({ status }) => {
         }
     };
 
-    if (status === "list") {
-        return (
-            <div className="todo_pannel">
-                <div className="menu_open_icon_wrapper">
-                    {tabletSize && (
-                        <div
-                            className="menu_open_icon"
-                            onClick={() => dispatch(openMenu())}
-                        >
-                            <FontAwesomeIcon icon={faBars} />
-                        </div>
-                    )}
-                </div>
+    const addListTaskFunction = (title) => {
+        if (title === "") {
+            toast.error("Please write something.");
+        } else {
+            console.log("added todo");
+            dispatch(addListTask(listUrlSlug, title));
+            setTodoTitle("");
+        }
+    };
 
-                <BlackBox status={menuStatus} />
-
-                <TodoMenu />
-
-                <User />
-
-                <ListSettings />
-
-                <div className="todo_content">
-                    <div className="background_color_box"></div>
-
-                    <div className="tasks_title">
-                        <div>
-                            <span>Tasks</span>
-
-                            <div className="just_date">01 - 01 - 2025</div>
-                        </div>
-
-                        <div className="tasks_title_right_content">
-                            <div className="time">
-                                <div className="time_wrapper">
-                                    <div className="hours">08</div>
-                                    <div className="minutes">00</div>
-                                </div>
-
-                                <div className="am_pm">AM</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <Todos />
-
-                    <form
-                        className="add_todo"
-                        onSubmit={(e) => e.preventDefault()}
+    return (
+        <div className="todo_pannel">
+            <div className="menu_open_icon_wrapper">
+                {tabletSize && (
+                    <div
+                        className="menu_open_icon"
+                        onClick={() => dispatch(openMenu())}
                     >
-                        <input
-                            type="text"
-                            placeholder="Add a new task"
-                            onChange={(e) => setTodoTitle(e.target.value)}
-                        />
-
-                        <span>
-                            <FontAwesomeIcon icon={faPlus} />
-                        </span>
-                    </form>
-                </div>
+                        <FontAwesomeIcon icon={faBars} />
+                    </div>
+                )}
             </div>
-        );
-    } else if (status === "todos") {
-        return (
-            <div className="todo_pannel">
-                <div className="menu_open_icon_wrapper">
-                    {tabletSize && (
-                        <div
-                            className="menu_open_icon"
-                            onClick={() => dispatch(openMenu())}
-                        >
-                            <FontAwesomeIcon icon={faBars} />
-                        </div>
-                    )}
-                </div>
 
-                <BlackBox status={menuStatus} />
+            <BlackBox status={menuStatus} />
 
-                <TodoMenu />
+            <TodoMenu />
 
-                <User />
+            <User />
 
-                <ListSettings />
+            <ListSettings />
 
-                <div className="todo_content">
+            <div className="todo_content">
+                {status === "todos" ? (
                     <img
                         className="background_image_box"
                         src={
@@ -148,28 +100,56 @@ export const TodoPannel = ({ status }) => {
                         }
                         alt="background-img"
                     />
+                ) : status === "list" ? (
+                    <div className="background_color_box"></div>
+                ) : status === "important_todos" ? (
+                    <div className="background_color_box background_color_box_2"></div>
+                ) : (
+                    <div className="background_color_box"></div>
+                )}
 
-                    <div className="tasks_title">
-                        <div>
-                            <span>Tasks</span>
+                <div
+                    className={`tasks_title ${
+                        status === "important_todos" ? "show" : ""
+                    }`}
+                >
+                    <div>
+                        <span>
+                            {status === "todos"
+                                ? "Tasks"
+                                : status === "list"
+                                ? "List Tasks"
+                                : status === "important_todos"
+                                ? "Important Tasks"
+                                : "Tasks"}
+                        </span>
 
-                            <div className="just_date">01 - 01 - 2025</div>
-                        </div>
-
-                        <div className="tasks_title_right_content">
-                            <div className="time">
-                                <div className="time_wrapper">
-                                    <div className="hours">08</div>
-                                    <div className="minutes">00</div>
-                                </div>
-
-                                <div className="am_pm">AM</div>
-                            </div>
-                        </div>
+                        <div className="just_date">01 - 01 - 2025</div>
                     </div>
 
-                    <Todos />
+                    <div className="tasks_title_right_content">
+                        <div className="time">
+                            <div className="time_wrapper">
+                                <div className="hours">08</div>
+                                <div className="minutes">00</div>
+                            </div>
 
+                            <div className="am_pm">AM</div>
+                        </div>
+                    </div>
+                </div>
+
+                {status === "todos" ? (
+                    <Todos />
+                ) : status === "list" ? (
+                    <ListTodos />
+                ) : status === "important_todos" ? (
+                    <ImportantTodos />
+                ) : (
+                    <Todos />
+                )}
+
+                {status === "todos" ? (
                     <form
                         className="add_todo"
                         onSubmit={(e) => e.preventDefault()}
@@ -185,8 +165,26 @@ export const TodoPannel = ({ status }) => {
                             <FontAwesomeIcon icon={faPlus} />
                         </span>
                     </form>
-                </div>
+                ) : status === "list" ? (
+                    <form
+                        className="add_todo"
+                        onSubmit={(e) => e.preventDefault()}
+                    >
+                        <input
+                            type="text"
+                            value={todoTitle}
+                            placeholder="Add a new task"
+                            onChange={(e) => setTodoTitle(e.target.value)}
+                        />
+
+                        <span onClick={() => addListTaskFunction(todoTitle)}>
+                            <FontAwesomeIcon icon={faPlus} />
+                        </span>
+                    </form>
+                ) : (
+                    <></>
+                )}
             </div>
-        );
-    }
+        </div>
+    );
 };

@@ -14,6 +14,11 @@ import {
     ON_START,
     ADD_TASK,
     GET_TODOS,
+    DELETE_TASK,
+    GIVE_GET_STAR,
+    ADD_LIST,
+    ADD_LIST_TASK,
+    COMPLETE_TASK,
 } from "./Types";
 
 export const openMenu = () => {
@@ -88,4 +93,24 @@ export const addTask = (title) => {
 
 export const getTodos = () => {
     return { type: GET_TODOS };
+};
+
+export const completeTask = (taskId) => {
+    return { type: COMPLETE_TASK, id: taskId };
+};
+
+export const deleteTask = (taskId) => {
+    return { type: DELETE_TASK, id: taskId };
+};
+
+export const giveGetStar = (taskId) => {
+    return { type: GIVE_GET_STAR, id: taskId };
+};
+
+export const addList = () => {
+    return { type: ADD_LIST };
+};
+
+export const addListTask = (listId, taskName) => {
+    return { type: ADD_LIST_TASK, id: listId, name: taskName };
 };

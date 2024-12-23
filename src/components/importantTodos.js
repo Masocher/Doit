@@ -1,18 +1,20 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheck, faStar, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faCheck, faStar } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { completeTask, deleteTask, giveGetStar } from "../store/Actions";
 import { useDispatch } from "react-redux";
+import { giveGetStar } from "../store/Actions";
 
-export const Todos = () => {
+export const ImportantTodos = () => {
     const dispatch = useDispatch();
 
     const [homeTasks, setHomeTasks] = useState([]);
 
     const homeTasksReducer = async () => {
         try {
-            let response = await axios.get("https://doit.liara.run/api/tasks/");
+            let response = await axios.get(
+                "https://doit.liara.run/api/tasks/importants/"
+            );
             setHomeTasks(response.data);
         } catch (error) {
             console.log(error);
@@ -31,22 +33,11 @@ export const Todos = () => {
                 homeTasks.map((task) => (
                     <div className="todo_box" key={task.id}>
                         <div className="todo_left_section">
-                            <div
-                                className={`done_btn ${
-                                    task.is_done ? "completed" : ""
-                                }`}
-                                onClick={() => dispatch(completeTask(task.id))}
-                            >
+                            <div className="done_btn">
                                 <FontAwesomeIcon icon={faCheck} />
                             </div>
 
-                            <div
-                                className={`todo_title ${
-                                    task.is_done ? "completed" : ""
-                                }`}
-                            >
-                                {task.name}
-                            </div>
+                            <div className="todo_title">{task.name}</div>
                         </div>
 
                         <div className="todo_right_section">
@@ -57,13 +48,6 @@ export const Todos = () => {
                                 onClick={() => dispatch(giveGetStar(task.id))}
                             >
                                 <FontAwesomeIcon icon={faStar} />
-                            </div>
-
-                            <div
-                                className="delete_btn"
-                                onClick={() => dispatch(deleteTask(task.id))}
-                            >
-                                <FontAwesomeIcon icon={faTrash} />
                             </div>
                         </div>
                     </div>

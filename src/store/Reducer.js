@@ -16,7 +16,12 @@ import {
     LOG_IN,
     LOG_OUT,
     ON_START,
-    GET_TODOS,
+    ADD_TASK,
+    DELETE_TASK,
+    GIVE_GET_STAR,
+    ADD_LIST,
+    ADD_LIST_TASK,
+    COMPLETE_TASK,
 } from "./Types";
 
 import img1 from "../images/todo-background/1.jpg";
@@ -240,8 +245,7 @@ const logOutReducer = (state = isAuthenticated, action) => {
                 })
                 .catch((error) => {
                     console.log(
-                        "error while removig refresh token : " +
-                            error.response.data
+                        "error while removig refresh token : " + error.response
                     );
                 });
             return state;
@@ -337,19 +341,99 @@ const onStart = (state = isAuthenticated, action) => {
     }
 };
 
-const homeTasks = null;
+const tasksState = [];
 
-const homeTasksReducer = (state = homeTasks, action) => {
+const addTaskReducer = (state = tasksState, action) => {
     switch (action.type) {
-        case GET_TODOS:
+        case ADD_TASK:
             axios
-                .get("https://doit.liara.run/api/tasks/")
+                .post("https://doit.liara.run/api/tasks/", {
+                    name: action.name,
+                })
                 .then((response) => {
-                    state = response.data
-                    console.log(state);
+                    console.log(response.data);
                 })
                 .catch((error) => console.log(error));
-                console.log(state)
+            return state;
+
+        default:
+            return state;
+    }
+};
+
+const completeTaskReducer = (state = tasksState, action) => {
+    switch (action.type) {
+        case COMPLETE_TASK:
+            axios
+                .get(`https://doit.liara.run/api/tasks/${action.id}/set_done/`)
+                .then((response) => console.log(response))
+                .catch((error) => console.log(error));
+
+            return state;
+
+        default:
+            return state;
+    }
+};
+
+const deleteTaskReducer = (state = tasksState, action) => {
+    switch (action.type) {
+        case DELETE_TASK:
+            axios
+                .delete(`https://doit.liara.run/api/tasks/${action.id}/`)
+                .then((response) => {
+                    console.log(response.data);
+                })
+                .catch((error) => console.log(error));
+            return state;
+
+        default:
+            return state;
+    }
+};
+
+const giveGetStarReducer = (state = tasksState, action) => {
+    switch (action.type) {
+        case GIVE_GET_STAR:
+            axios
+                .get(
+                    `https://doit.liara.run/api/tasks/${action.id}/add_important/`
+                )
+                .then((response) => console.log(response.data))
+                .catch((error) => console.log(error));
+            return state;
+
+        default:
+            return state;
+    }
+};
+
+const addListReducer = (state = tasksState, action) => {
+    switch (action.type) {
+        case ADD_LIST:
+            axios
+                .get("https://doit.liara.run/api/lists/add_list/")
+                .then((response) => console.log(response.data))
+                .catch((error) => console.log(error));
+            return state;
+
+        default:
+            return state;
+    }
+};
+
+const addTaskListReducer = (state = tasksState, action) => {
+    switch (action.type) {
+        case ADD_LIST_TASK:
+            axios
+                .post(
+                    `https://doit.liara.run/api/lists/${action.id}/add_task/`,
+                    {
+                        name: action.name,
+                    }
+                )
+                .then((response) => console.log(response))
+                .catch((error) => console.log(error));
             return state;
 
         default:
@@ -368,5 +452,10 @@ export const rootReducer = combineReducers({
     logInReducer,
     logOutReducer,
     onStart,
-    homeTasksReducer
+    addTaskReducer,
+    deleteTaskReducer,
+    giveGetStarReducer,
+    addListReducer,
+    addTaskListReducer,
+    completeTaskReducer,
 });

@@ -10,16 +10,25 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { useMediaQuery } from "react-responsive";
 import { useDispatch, useSelector } from "react-redux";
-import { closeMenu, openSettings, openUserBox } from "../store/Actions";
+import {
+    addList,
+    closeMenu,
+    openSettings,
+    openUserBox,
+} from "../store/Actions";
 import img1 from "../images/todo-background/1.jpg";
 import img2 from "../images/todo-background/2.jpg";
 import img3 from "../images/todo-background/3.jpg";
 import img4 from "../images/todo-background/4.jpg";
 import img5 from "../images/todo-background/5.jpg";
 import img6 from "../images/todo-background/6.jpg";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 export const TodoMenu = () => {
+    let location = useLocation();
+
     const menuStatus = useSelector(
         (rootReducer) => rootReducer.blackBoxReducer
     );
@@ -32,6 +41,23 @@ export const TodoMenu = () => {
 
     const tabletSize = useMediaQuery({
         query: "(max-width: 768px)",
+    });
+
+    const [lists, setLists] = useState([]);
+
+    const listsReducer = async () => {
+        try {
+            let response = await axios.get("https://doit.liara.run/api/lists/");
+            setLists(response.data);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    useEffect(() => {
+        setTimeout(() => {
+            listsReducer();
+        }, 1000);
     });
 
     return (
@@ -83,18 +109,26 @@ export const TodoMenu = () => {
             </div>
 
             <div className="menu_options">
-                <Link to="important" style={{ textDecoration: "none" }}>
-                    <div className="important_todos">
+                <Link to="/importants" style={{ textDecoration: "none" }}>
+                    <div
+                        className={`important_todos ${
+                            location.pathname === "/importants" ? "show" : ""
+                        }`}
+                    >
                         <span>
                             <FontAwesomeIcon icon={faStar} />
                         </span>
 
-                        <div>Important</div>
+                        <div>Importants</div>
                     </div>
                 </Link>
 
                 <Link to="/" style={{ textDecoration: "none" }}>
-                    <div className="home_todos show">
+                    <div
+                        className={`home_todos ${
+                            location.pathname === "/" ? "show" : ""
+                        }`}
+                    >
                         <span>
                             <FontAwesomeIcon icon={faHome} />
                         </span>
@@ -108,144 +142,44 @@ export const TodoMenu = () => {
                 </div>
 
                 <div className="lists_container">
-                    <Link to={`/lists/0`} style={{ textDecoration: "none" }}>
-                        <div className="todo_list">
-                            <span>
-                                <FontAwesomeIcon icon={faBars} />
-                            </span>
+                    {lists ? (
+                        lists.map((list) => (
+                            <Link
+                                to={`/lists/${list.id}`}
+                                style={{ textDecoration: "none" }}
+                                key={list.id}
+                            >
+                                <div className="todo_list">
+                                    <span>
+                                        <FontAwesomeIcon icon={faBars} />
+                                    </span>
 
-                            <div>List 1</div>
+                                    <div>
+                                        {list.name
+                                            ? `${list.name}`
+                                            : `List ${list.id}`}
+                                    </div>
 
-                            <div className="list_edit_btn">
-                                <FontAwesomeIcon
-                                    icon={faGear}
-                                    onClick={() => dispatch(openSettings())}
-                                />
-                            </div>
-                        </div>
-                    </Link>
-
-                    <Link to={`/lists/1`} style={{ textDecoration: "none" }}>
-                        <div className="todo_list">
-                            <span>
-                                <FontAwesomeIcon icon={faBars} />
-                            </span>
-
-                            <div>List 2</div>
-
-                            <div className="list_edit_btn">
-                                <FontAwesomeIcon
-                                    icon={faGear}
-                                    onClick={() => dispatch(openSettings())}
-                                />
-                            </div>
-                        </div>
-                    </Link>
-
-                    <Link to={`/lists/2`} style={{ textDecoration: "none" }}>
-                        <div className="todo_list">
-                            <span>
-                                <FontAwesomeIcon icon={faBars} />
-                            </span>
-
-                            <div>List 3</div>
-
-                            <div className="list_edit_btn">
-                                <FontAwesomeIcon
-                                    icon={faGear}
-                                    onClick={() => dispatch(openSettings())}
-                                />
-                            </div>
-                        </div>
-                    </Link>
-
-                    <Link to={`/lists/3`} style={{ textDecoration: "none" }}>
-                        <div className="todo_list show">
-                            <span>
-                                <FontAwesomeIcon icon={faBars} />
-                            </span>
-
-                            <div>List 4</div>
-
-                            <div className="list_edit_btn">
-                                <FontAwesomeIcon
-                                    icon={faGear}
-                                    onClick={() => dispatch(openSettings())}
-                                />
-                            </div>
-                        </div>
-                    </Link>
-
-                    <Link to={`/lists/4`} style={{ textDecoration: "none" }}>
-                        <div className="todo_list">
-                            <span>
-                                <FontAwesomeIcon icon={faBars} />
-                            </span>
-
-                            <div>List 5</div>
-
-                            <div className="list_edit_btn">
-                                <FontAwesomeIcon
-                                    icon={faGear}
-                                    onClick={() => dispatch(openSettings())}
-                                />
-                            </div>
-                        </div>
-                    </Link>
-
-                    <Link to={`/lists/5`} style={{ textDecoration: "none" }}>
-                        <div className="todo_list">
-                            <span>
-                                <FontAwesomeIcon icon={faBars} />
-                            </span>
-
-                            <div>List 6</div>
-
-                            <div className="list_edit_btn">
-                                <FontAwesomeIcon
-                                    icon={faGear}
-                                    onClick={() => dispatch(openSettings())}
-                                />
-                            </div>
-                        </div>
-                    </Link>
-
-                    <Link to={`/lists/6`} style={{ textDecoration: "none" }}>
-                        <div className="todo_list">
-                            <span>
-                                <FontAwesomeIcon icon={faBars} />
-                            </span>
-
-                            <div>List 7</div>
-
-                            <div className="list_edit_btn">
-                                <FontAwesomeIcon
-                                    icon={faGear}
-                                    onClick={() => dispatch(openSettings())}
-                                />
-                            </div>
-                        </div>
-                    </Link>
-
-                    <Link to={`/lists/7`} style={{ textDecoration: "none" }}>
-                        <div className="todo_list">
-                            <span>
-                                <FontAwesomeIcon icon={faBars} />
-                            </span>
-
-                            <div>List 8</div>
-
-                            <div className="list_edit_btn">
-                                <FontAwesomeIcon
-                                    icon={faGear}
-                                    onClick={() => dispatch(openSettings())}
-                                />
-                            </div>
-                        </div>
-                    </Link>
+                                    <div className="list_edit_btn">
+                                        <FontAwesomeIcon
+                                            icon={faGear}
+                                            onClick={() =>
+                                                dispatch(openSettings())
+                                            }
+                                        />
+                                    </div>
+                                </div>
+                            </Link>
+                        ))
+                    ) : (
+                        <div className="no_lists">There is no list !</div>
+                    )}
                 </div>
 
-                <div className="create_list_btn">
+                <div
+                    className="create_list_btn"
+                    onClick={() => dispatch(addList())}
+                >
                     <span>
                         <FontAwesomeIcon icon={faPlus} />
                     </span>
