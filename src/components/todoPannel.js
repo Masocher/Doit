@@ -15,15 +15,16 @@ import img3 from "../images/todo-background/3.jpg";
 import img4 from "../images/todo-background/4.jpg";
 import img5 from "../images/todo-background/5.jpg";
 import img6 from "../images/todo-background/6.jpg";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
 import { ListTodos } from "./listTodos";
 import { ImportantTodos } from "./importantTodos";
 import { useParams } from "react-router-dom";
+import axios from "axios";
 
 export const TodoPannel = ({ status }) => {
     let { listUrlSlug } = useParams();
-    
+
     const dispatch = useDispatch();
 
     const menuStatus = useSelector(
@@ -60,6 +61,99 @@ export const TodoPannel = ({ status }) => {
         }
     };
 
+    const [tasksStatus, setTasksStatus] = useState(false);
+
+    const [homeTasks, setHomeTasks] = useState([]);
+
+    const homeTasksReducer = async () => {
+        try {
+            let response = await axios.get("https://doit.liara.run/api/tasks/");
+            let data = await response.data;
+            setHomeTasks(data);
+            setTasksStatus(true);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    const updateTasks = () => {
+        setTimeout(async () => {
+            await homeTasksReducer();
+        }, 500);
+    };
+
+    if (tasksStatus === false) {
+        setTimeout(async () => {
+            await homeTasksReducer();
+        }, 500);
+    }
+
+    useEffect(() => {
+        homeTasksReducer();
+    }, []);
+
+    const [listsTasksStatus, setListsTasksStatus] = useState(false);
+
+    const [listTasks, setListTasks] = useState([]);
+
+    const listTasksReducer = async () => {
+        try {
+            let response = await axios.get(
+                `https://doit.liara.run/api/lists/${listUrlSlug}/`
+            );
+            setListTasks(response.data);
+            setListsTasksStatus(true);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    const updateListsTasks = () => {
+        setTimeout(async () => {
+            await listTasksReducer();
+        }, 500);
+    };
+
+    if (listsTasksStatus === false) {
+        setTimeout(async () => {
+            await listTasksReducer();
+        }, 500);
+    }
+
+    useEffect(() => {
+        listTasksReducer();
+    }, []);
+
+    const [listsStatus, setListsStatus] = useState(false);
+
+    const [lists, setLists] = useState([]);
+
+    const listsReducer = async () => {
+        try {
+            let response = await axios.get("https://doit.liara.run/api/lists/");
+            setLists(response.data);
+            setListsStatus(true);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    const updateLists = () => {
+        setTimeout(async () => {
+            await listsReducer();
+        }, 500);
+    };
+
+    if (listsStatus === false) {
+        setTimeout(async () => {
+            await listsReducer();
+        }, 500);
+    }
+
+    useEffect(() => {
+        listsReducer();
+    }, []);
+
     return (
         <div className="todo_pannel">
             <div className="menu_open_icon_wrapper">
@@ -75,11 +169,11 @@ export const TodoPannel = ({ status }) => {
 
             <BlackBox status={menuStatus} />
 
-            <TodoMenu />
+            <TodoMenu lists={lists} updateLists={updateLists} />
 
             <User />
 
-            <ListSettings />
+            <ListSettings updateLists={updateLists} />
 
             <div className="todo_content">
                 {status === "todos" ? (
@@ -140,13 +234,16 @@ export const TodoPannel = ({ status }) => {
                 </div>
 
                 {status === "todos" ? (
-                    <Todos />
+                    <Todos updateTasks={updateTasks} homeTasks={homeTasks} />
                 ) : status === "list" ? (
-                    <ListTodos />
+                    <ListTodos
+                        updateListsTasks={updateListsTasks}
+                        listTasks={listTasks}
+                    />
                 ) : status === "important_todos" ? (
-                    <ImportantTodos />
+                    <ImportantTodos updateTasks={updateTasks} />
                 ) : (
-                    <Todos />
+                    <Todos updateTasks={updateTasks} homeTasks={homeTasks} />
                 )}
 
                 {status === "todos" ? (
@@ -161,7 +258,12 @@ export const TodoPannel = ({ status }) => {
                             onChange={(e) => setTodoTitle(e.target.value)}
                         />
 
-                        <span onClick={() => addTaskFunction(todoTitle)}>
+                        <span
+                            onClick={() => {
+                                addTaskFunction(todoTitle);
+                                updateTasks();
+                            }}
+                        >
                             <FontAwesomeIcon icon={faPlus} />
                         </span>
                     </form>
@@ -177,7 +279,12 @@ export const TodoPannel = ({ status }) => {
                             onChange={(e) => setTodoTitle(e.target.value)}
                         />
 
-                        <span onClick={() => addListTaskFunction(todoTitle)}>
+                        <span
+                            onClick={() => {
+                                addListTaskFunction(todoTitle);
+                                updateListsTasks();
+                            }}
+                        >
                             <FontAwesomeIcon icon={faPlus} />
                         </span>
                     </form>

@@ -3,12 +3,14 @@ import { faCheck, faStar } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import { giveGetStar } from "../store/Actions";
+import { giveGetStar, completeTask } from "../store/Actions";
 
 export const ImportantTodos = () => {
     const dispatch = useDispatch();
 
     const [homeTasks, setHomeTasks] = useState([]);
+
+    const [tasksStatus, setTasksStatus] = useState(false);
 
     const homeTasksReducer = async () => {
         try {
@@ -16,16 +18,27 @@ export const ImportantTodos = () => {
                 "https://doit.liara.run/api/tasks/importants/"
             );
             setHomeTasks(response.data);
+            setTasksStatus(true);
         } catch (error) {
             console.log(error);
         }
     };
 
+    const updateTasks = () => {
+        setTimeout(async () => {
+            await homeTasksReducer();
+        }, 500);
+    };
+
+    if (tasksStatus === false) {
+        setTimeout(async () => {
+            await homeTasksReducer();
+        }, 500);
+    }
+
     useEffect(() => {
-        setTimeout(() => {
-            homeTasksReducer();
-        }, 1000);
-    });
+        homeTasksReducer();
+    }, []);
 
     return (
         <div className="todos_container">
@@ -33,11 +46,25 @@ export const ImportantTodos = () => {
                 homeTasks.map((task) => (
                     <div className="todo_box" key={task.id}>
                         <div className="todo_left_section">
-                            <div className="done_btn">
+                            <div
+                                className={`done_btn ${
+                                    task.is_done ? "completed" : ""
+                                }`}
+                                onClick={() => {
+                                    dispatch(completeTask(task.id));
+                                    updateTasks();
+                                }}
+                            >
                                 <FontAwesomeIcon icon={faCheck} />
                             </div>
 
-                            <div className="todo_title">{task.name}</div>
+                            <div
+                                className={`todo_title ${
+                                    task.is_done ? "completed" : ""
+                                }`}
+                            >
+                                {task.name}
+                            </div>
                         </div>
 
                         <div className="todo_right_section">
@@ -45,7 +72,10 @@ export const ImportantTodos = () => {
                                 className={`star_btn ${
                                     task.is_important ? "stared_btn" : ""
                                 }`}
-                                onClick={() => dispatch(giveGetStar(task.id))}
+                                onClick={() => {
+                                    dispatch(giveGetStar(task.id));
+                                    updateTasks();
+                                }}
                             >
                                 <FontAwesomeIcon icon={faStar} />
                             </div>

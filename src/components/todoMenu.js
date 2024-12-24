@@ -24,10 +24,8 @@ import img4 from "../images/todo-background/4.jpg";
 import img5 from "../images/todo-background/5.jpg";
 import img6 from "../images/todo-background/6.jpg";
 import { Link, useLocation } from "react-router-dom";
-import { useState, useEffect } from "react";
-import axios from "axios";
 
-export const TodoMenu = () => {
+export const TodoMenu = ({ lists, updateLists }) => {
     let location = useLocation();
 
     const menuStatus = useSelector(
@@ -42,23 +40,6 @@ export const TodoMenu = () => {
 
     const tabletSize = useMediaQuery({
         query: "(max-width: 768px)",
-    });
-
-    const [lists, setLists] = useState([]);
-
-    const listsReducer = async () => {
-        try {
-            let response = await axios.get("https://doit.liara.run/api/lists/");
-            setLists(response.data);
-        } catch (error) {
-            console.log(error);
-        }
-    };
-
-    useEffect(() => {
-        setTimeout(() => {
-            listsReducer();
-        }, 1000);
     });
 
     return (
@@ -143,7 +124,7 @@ export const TodoMenu = () => {
                 </div>
 
                 <div className="lists_container">
-                    {lists ? (
+                    {lists.length > 0 ? (
                         lists.map((list) => (
                             <Link
                                 to={`/lists/${list.id}`}
@@ -188,7 +169,10 @@ export const TodoMenu = () => {
 
                 <div
                     className="create_list_btn"
-                    onClick={() => dispatch(addList())}
+                    onClick={() => {
+                        dispatch(addList());
+                        updateLists();
+                    }}
                 >
                     <span>
                         <FontAwesomeIcon icon={faPlus} />

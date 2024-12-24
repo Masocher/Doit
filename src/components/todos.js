@@ -1,29 +1,10 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck, faStar, faTrash } from "@fortawesome/free-solid-svg-icons";
-import { useEffect, useState } from "react";
-import axios from "axios";
 import { completeTask, deleteTask, giveGetStar } from "../store/Actions";
 import { useDispatch } from "react-redux";
 
-export const Todos = () => {
+export const Todos = ({ updateTasks, homeTasks }) => {
     const dispatch = useDispatch();
-
-    const [homeTasks, setHomeTasks] = useState([]);
-
-    const homeTasksReducer = async () => {
-        try {
-            let response = await axios.get("https://doit.liara.run/api/tasks/");
-            setHomeTasks(response.data);
-        } catch (error) {
-            console.log(error);
-        }
-    };
-
-    useEffect(() => {
-        setTimeout(() => {
-            homeTasksReducer();
-        }, 1000);
-    });
 
     return (
         <div className="todos_container">
@@ -35,7 +16,10 @@ export const Todos = () => {
                                 className={`done_btn ${
                                     task.is_done ? "completed" : ""
                                 }`}
-                                onClick={() => dispatch(completeTask(task.id))}
+                                onClick={() => {
+                                    dispatch(completeTask(task.id));
+                                    updateTasks();
+                                }}
                             >
                                 <FontAwesomeIcon icon={faCheck} />
                             </div>
@@ -54,14 +38,20 @@ export const Todos = () => {
                                 className={`star_btn ${
                                     task.is_important ? "stared_btn" : ""
                                 }`}
-                                onClick={() => dispatch(giveGetStar(task.id))}
+                                onClick={() => {
+                                    dispatch(giveGetStar(task.id));
+                                    updateTasks();
+                                }}
                             >
                                 <FontAwesomeIcon icon={faStar} />
                             </div>
 
                             <div
                                 className="delete_btn"
-                                onClick={() => dispatch(deleteTask(task.id))}
+                                onClick={() => {
+                                    dispatch(deleteTask(task.id));
+                                    updateTasks();
+                                }}
                             >
                                 <FontAwesomeIcon icon={faTrash} />
                             </div>

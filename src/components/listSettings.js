@@ -9,7 +9,7 @@ import {
     renameList,
 } from "../store/Actions";
 
-export const ListSettings = () => {
+export const ListSettings = ({ updateLists }) => {
     const dispatch = useDispatch();
 
     const settingsStatus = useSelector(
@@ -19,12 +19,10 @@ export const ListSettings = () => {
     const selectedList = useSelector(
         (rootReducer) => rootReducer.selectListReducer
     );
-    console.log(selectedList);
 
     const listName = useSelector(
         (rootReducer) => rootReducer.changeNameListReducer
     );
-    console.log(listName);
 
     return (
         <div className={`settings_container ${settingsStatus ? "show" : ""}`}>
@@ -54,7 +52,8 @@ export const ListSettings = () => {
                         onClick={() => {
                             dispatch(deleteList(selectedList));
                             dispatch(closeSettings());
-                            window.location.replace("/");
+                            updateLists();
+                            // window.location.replace("/");
                         }}
                     >
                         Delete list
@@ -66,6 +65,7 @@ export const ListSettings = () => {
                     onClick={() => {
                         dispatch(renameList(selectedList, listName));
                         dispatch(closeSettings());
+                        updateLists();
                     }}
                 >
                     Change name
