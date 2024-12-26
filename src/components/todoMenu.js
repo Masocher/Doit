@@ -44,7 +44,9 @@ export const TodoMenu = ({ lists, updateLists, updateListsTasks }) => {
     });
 
     useEffect(() => {
-        updateListsTasks();
+        if (location.pathname.includes("/lists")) {
+            updateListsTasks();
+        }
     }, [location.pathname]);
 
     return (
@@ -110,7 +112,7 @@ export const TodoMenu = ({ lists, updateLists, updateListsTasks }) => {
                     </div>
                 </Link>
 
-                <Link to="/" style={{ textDecoration: "none" }}>
+                <Link to="/home" style={{ textDecoration: "none" }}>
                     <div
                         className={`home_todos ${
                             location.pathname === "/" ? "show" : ""

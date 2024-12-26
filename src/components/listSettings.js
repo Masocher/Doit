@@ -61,7 +61,7 @@ export const ListSettings = ({ updateLists, updateListsTasks }) => {
                             dispatch(closeSettings());
                             updateLists();
                             updateListsTasks();
-                            navigate("/");
+                            navigate("/home");
                         }}
                     >
                         Delete list

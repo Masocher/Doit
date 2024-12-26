@@ -198,7 +198,7 @@ const logInReducer = (state = isAuthenticated, action) => {
                     toast.success("Successfully logged in !");
                     console.log("you logged in !");
                     setTimeout(() => {
-                        window.location.replace("/");
+                        window.location.replace("/home");
                     }, 1000);
                 })
                 .catch((error) => {
@@ -242,7 +242,7 @@ const logOutReducer = (state = isAuthenticated, action) => {
                     axios.defaults.headers.common["Authorization"] = "";
                     toast.success("Successfully logged out !");
                     setTimeout(() => {
-                        window.location.replace("/");
+                        window.location.replace("/home");
                     }, 1000);
                 })
                 .catch((error) => {
@@ -272,7 +272,7 @@ const logOutFunction = (state = isAuthenticated) => {
                 "You have been logged out of your account due to a problem !"
             );
             setTimeout(() => {
-                window.location.replace("/");
+                window.location.replace("/home");
             }, 1000);
         })
         .catch((error) => {

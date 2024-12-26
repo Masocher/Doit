@@ -59,7 +59,7 @@ export const Todos = ({ updateTasks, homeTasks }) => {
                     </div>
                 ))
             ) : (
-                <div className="no_task">Waiting for tasks !</div>
+                <div className="no_task">Add a task</div>
             )}
         </div>
     );

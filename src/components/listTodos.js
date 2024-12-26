@@ -3,7 +3,7 @@ import { faCheck, faStar, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { deleteTask, giveGetStar, completeTask } from "../store/Actions";
 import { useDispatch } from "react-redux";
 
-export const ListTodos = ({ updateListsTasks, listTasks }) => {
+export const ListTodos = ({ updateListsTasks, listTasks, setTaskTodosStatus }) => {
     const dispatch = useDispatch();
 
     return (
@@ -59,7 +59,7 @@ export const ListTodos = ({ updateListsTasks, listTasks }) => {
                     </div>
                 ))
             ) : (
-                <div className="no_task">Waiting for tasks !</div>
+                <div className="no_task">This list does not exist !</div>
             )}
         </div>
     );

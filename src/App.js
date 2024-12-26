@@ -26,7 +26,7 @@ export const App = () => {
             <Routes>
                 <Route path="/lists/:listUrlSlug" element={<List />} />
                 <Route path="/importants" element={<Importants />} />
-                <Route path="/" element={<Home />} />
+                <Route path="/home" element={<Home />} />
                 <Route path="/log-in" element={<LogIn />} />
                 <Route path="/sign-up" element={<SignUp />} />
                 <Route path="*" element={<NotFound />} />

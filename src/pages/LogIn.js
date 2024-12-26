@@ -48,7 +48,7 @@ export const LogIn = () => {
             <div className="back_btn"></div>
 
             <div className="content left_content">
-                <Link to={"/"}>
+                <Link to={"/home"}>
                     <div className="back_link">
                         <span>
                             <FontAwesomeIcon icon={faAngleLeft} />

@@ -84,7 +84,7 @@ export const ImportantTodos = () => {
                     </div>
                 ))
             ) : (
-                <div className="no_task">Waiting for tasks !</div>
+                <div className="no_task">Create an important task</div>
             )}
         </div>
     );
