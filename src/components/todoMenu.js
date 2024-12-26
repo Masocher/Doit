@@ -24,8 +24,9 @@ import img4 from "../images/todo-background/4.jpg";
 import img5 from "../images/todo-background/5.jpg";
 import img6 from "../images/todo-background/6.jpg";
 import { Link, useLocation } from "react-router-dom";
+import { useEffect } from "react";
 
-export const TodoMenu = ({ lists, updateLists }) => {
+export const TodoMenu = ({ lists, updateLists, updateListsTasks }) => {
     let location = useLocation();
 
     const menuStatus = useSelector(
@@ -41,6 +42,10 @@ export const TodoMenu = ({ lists, updateLists }) => {
     const tabletSize = useMediaQuery({
         query: "(max-width: 768px)",
     });
+
+    useEffect(() => {
+        updateListsTasks();
+    }, [location.pathname]);
 
     return (
         <div className={`todo_menu_container ${menuStatus ? "show" : ""}`}>

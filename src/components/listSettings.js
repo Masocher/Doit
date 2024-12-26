@@ -8,8 +8,12 @@ import {
     changeNameList,
     renameList,
 } from "../store/Actions";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-export const ListSettings = ({ updateLists }) => {
+export const ListSettings = ({ updateLists, updateListsTasks }) => {
+    const navigate = useNavigate();
+
     const dispatch = useDispatch();
 
     const settingsStatus = useSelector(
@@ -23,6 +27,8 @@ export const ListSettings = ({ updateLists }) => {
     const listName = useSelector(
         (rootReducer) => rootReducer.changeNameListReducer
     );
+
+    let [listNameState, setListNameState] = useState(listName);
 
     return (
         <div className={`settings_container ${settingsStatus ? "show" : ""}`}>
@@ -40,10 +46,11 @@ export const ListSettings = ({ updateLists }) => {
                     <form onSubmit={(e) => e.preventDefault()}>
                         <input
                             type="text"
-                            value={listName}
-                            onChange={(e) =>
-                                dispatch(changeNameList(e.target.value))
-                            }
+                            value={listNameState}
+                            onChange={(e) => {
+                                dispatch(changeNameList(e.target.value));
+                                setListNameState(e.target.value);
+                            }}
                         />
                     </form>
 
@@ -53,7 +60,8 @@ export const ListSettings = ({ updateLists }) => {
                             dispatch(deleteList(selectedList));
                             dispatch(closeSettings());
                             updateLists();
-                            // window.location.replace("/");
+                            updateListsTasks();
+                            navigate("/");
                         }}
                     >
                         Delete list
@@ -65,6 +73,7 @@ export const ListSettings = ({ updateLists }) => {
                     onClick={() => {
                         dispatch(renameList(selectedList, listName));
                         dispatch(closeSettings());
+                        setListNameState("");
                         updateLists();
                     }}
                 >

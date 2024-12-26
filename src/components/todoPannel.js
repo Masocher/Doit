@@ -19,11 +19,12 @@ import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
 import { ListTodos } from "./listTodos";
 import { ImportantTodos } from "./importantTodos";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import axios from "axios";
 
 export const TodoPannel = ({ status }) => {
     let { listUrlSlug } = useParams();
+    let location = useLocation();
 
     const dispatch = useDispatch();
 
@@ -97,14 +98,19 @@ export const TodoPannel = ({ status }) => {
     const [listTasks, setListTasks] = useState([]);
 
     const listTasksReducer = async () => {
-        try {
-            let response = await axios.get(
-                `https://doit.liara.run/api/lists/${listUrlSlug}/`
-            );
-            setListTasks(response.data);
-            setListsTasksStatus(true);
-        } catch (error) {
-            console.log(error);
+        if (location.pathname.includes("lists")) {
+            try {
+                let response = await axios.get(
+                    `https://doit.liara.run/api/lists/${listUrlSlug}/`
+                );
+                let data = await response.data;
+                setListTasks(data);
+                setListsTasksStatus(true);
+            } catch (error) {
+                console.log(error);
+            }
+        } else {
+            return;
         }
     };
 
@@ -169,11 +175,18 @@ export const TodoPannel = ({ status }) => {
 
             <BlackBox status={menuStatus} />
 
-            <TodoMenu lists={lists} updateLists={updateLists} />
+            <TodoMenu
+                lists={lists}
+                updateLists={updateLists}
+                updateListsTasks={updateListsTasks}
+            />
 
             <User />
 
-            <ListSettings updateLists={updateLists} />
+            <ListSettings
+                updateLists={updateLists}
+                updateListsTasks={updateListsTasks}
+            />
 
             <div className="todo_content">
                 {status === "todos" ? (

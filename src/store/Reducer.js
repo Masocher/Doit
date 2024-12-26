@@ -137,9 +137,7 @@ const signUpReducer = (state = isAuthenticated, action) => {
                     password2: action.payload.password2,
                 })
                 .then((response) => {
-                    console.log("you are signing up ...");
                     toast.success("Successfully signed up !");
-                    console.log("you signed up !");
                     setTimeout(() => {
                         window.location.replace("/log-in");
                     }, 1000);
@@ -354,9 +352,6 @@ const addTaskReducer = (state = tasksState, action) => {
                 .post("https://doit.liara.run/api/tasks/", {
                     name: action.name,
                 })
-                .then((response) => {
-                    console.log(response.data);
-                })
                 .catch((error) => console.log(error));
             return state;
 
@@ -370,7 +365,6 @@ const completeTaskReducer = (state = tasksState, action) => {
         case COMPLETE_TASK:
             axios
                 .get(`https://doit.liara.run/api/tasks/${action.id}/set_done/`)
-                .then((response) => console.log(response))
                 .catch((error) => console.log(error));
 
             return state;
@@ -385,9 +379,6 @@ const deleteTaskReducer = (state = tasksState, action) => {
         case DELETE_TASK:
             axios
                 .delete(`https://doit.liara.run/api/tasks/${action.id}/`)
-                .then((response) => {
-                    console.log(response.data);
-                })
                 .catch((error) => console.log(error));
             return state;
 
@@ -403,7 +394,6 @@ const giveGetStarReducer = (state = tasksState, action) => {
                 .get(
                     `https://doit.liara.run/api/tasks/${action.id}/add_important/`
                 )
-                .then((response) => console.log(response.data))
                 .catch((error) => console.log(error));
             return state;
 
@@ -417,7 +407,6 @@ const addListReducer = (state = tasksState, action) => {
         case ADD_LIST:
             axios
                 .get("https://doit.liara.run/api/lists/add_list/")
-                .then((response) => console.log(response.data))
                 .catch((error) => console.log(error));
             return state;
 
@@ -436,7 +425,6 @@ const addTaskListReducer = (state = tasksState, action) => {
                         name: action.name,
                     }
                 )
-                .then((response) => console.log(response))
                 .catch((error) => console.log(error));
             return state;
 
@@ -450,7 +438,6 @@ const deleteListReducer = (state = tasksState, action) => {
         case DELETE_LIST:
             axios
                 .delete(`https://doit.liara.run/api/lists/${action.id}/`)
-                .then((response) => console.log(response))
                 .catch((error) => console.log(error));
 
             return state;
@@ -466,7 +453,6 @@ const selectListReducer = (state = selectedListId, action) => {
     switch (action.type) {
         case SELECT_LIST:
             state = action.id;
-            console.log(state);
 
             return state;
 
@@ -481,7 +467,6 @@ const changeNameListReducer = (state = selectedListName, action) => {
     switch (action.type) {
         case CHANGE_NAME_LIST:
             state = action.name;
-            console.log(state);
 
             return state;
 
@@ -497,7 +482,6 @@ const submitListName = (state = selectedListName, action) => {
                 .patch(`https://doit.liara.run/api/lists/${action.id}/`, {
                     name: action.name,
                 })
-                .then((response) => console.log(response))
                 .catch((error) => console.log(error));
             return state;
 
