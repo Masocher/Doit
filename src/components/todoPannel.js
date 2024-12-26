@@ -98,7 +98,7 @@ export const TodoPannel = ({ status }) => {
     const [listTasks, setListTasks] = useState([]);
 
     const listTasksReducer = async () => {
-        if (location.pathname.includes("lists")) {
+        if (location.pathname.includes("/lists")) {
             try {
                 let response = await axios.get(
                     `https://doit.liara.run/api/lists/${listUrlSlug}/`
@@ -137,7 +137,8 @@ export const TodoPannel = ({ status }) => {
     const listsReducer = async () => {
         try {
             let response = await axios.get("https://doit.liara.run/api/lists/");
-            setLists(response.data);
+            let data = await response.data;
+            setLists(data);
             setListsStatus(true);
         } catch (error) {
             console.log(error);

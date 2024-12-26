@@ -17,7 +17,8 @@ export const ImportantTodos = () => {
             let response = await axios.get(
                 "https://doit.liara.run/api/tasks/importants/"
             );
-            setHomeTasks(response.data);
+            let data = await response.data;
+            setHomeTasks(data);
             setTasksStatus(true);
         } catch (error) {
             console.log(error);

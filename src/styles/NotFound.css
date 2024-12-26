@@ -1,0 +1,36 @@
+.not_found_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: fit-content;
+    height: fit-content;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.title_box {
+    font-size: 60px;
+}
+
+.mini_title_box {
+    font-size: 14px;
+    color: #999;
+}
+
+.back_home_btn {
+    background-color: #eef5ff;
+    padding: 10px 20px;
+    text-align: center;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: 0.2s;
+    color: #000;
+    border-radius: 5px;
+}
+.back_home_btn:hover {
+    background-color: #000;
+    color: #fff;
+}

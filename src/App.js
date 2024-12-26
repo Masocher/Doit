@@ -5,6 +5,7 @@ import { LogIn } from "./pages/LogIn";
 import { SignUp } from "./pages/SignUp";
 import { List } from "./pages/List";
 import { Importants } from "./pages/Importants";
+import { NotFound } from "./pages/NotFound";
 import { Toaster } from "react-hot-toast";
 import { onStart } from "./store/Actions";
 import { useDispatch } from "react-redux";
@@ -28,6 +29,7 @@ export const App = () => {
                 <Route path="/" element={<Home />} />
                 <Route path="/log-in" element={<LogIn />} />
                 <Route path="/sign-up" element={<SignUp />} />
+                <Route path="*" element={<NotFound />} />
             </Routes>
 
             <Toaster position="top-right" reverseOrder={false} />
