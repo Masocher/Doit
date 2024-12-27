@@ -76,9 +76,13 @@ export const User = () => {
                     </div>
 
                     <div>
-                        <div className="user_nickname">Masocher</div>
+                        <div className="user_nickname">
+                            {localStorage.getItem("username")}
+                        </div>
 
-                        <div className="user_email_">Masocherr@gmail.com</div>
+                        <div className="user_email_">
+                            {localStorage.getItem("email")}
+                        </div>
 
                         <div className="theme_btn">
                             <div

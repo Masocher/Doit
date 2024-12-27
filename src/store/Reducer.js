@@ -193,9 +193,7 @@ const logInReducer = (state = isAuthenticated, action) => {
                 })
                 .then((response) => {
                     keepUser(response.data.access, state);
-                    console.log("you are logging in ...");
                     localStorage.setItem("refreshToken", response.data.refresh);
-                    toast.success("Successfully logged in !");
                     console.log("you logged in !");
                     setTimeout(() => {
                         window.location.replace("/home");
@@ -237,7 +235,8 @@ const logOutReducer = (state = isAuthenticated, action) => {
                 .then((response) => {
                     localStorage.removeItem("refreshToken");
                     localStorage.removeItem("token");
-                    localStorage.removeItem("user");
+                    localStorage.removeItem("username");
+                    localStorage.removeItem("email");
                     localStorage.removeItem("isAuthenticated");
                     axios.defaults.headers.common["Authorization"] = "";
                     toast.success("Successfully logged out !");
@@ -266,6 +265,8 @@ const logOutFunction = (state = isAuthenticated) => {
         .then((response) => {
             localStorage.removeItem("refreshToken");
             localStorage.removeItem("token");
+            localStorage.removeItem("username");
+            localStorage.removeItem("email");
             localStorage.setItem("isAuthenticated", false);
             axios.defaults.headers.common["Authorization"] = "";
             toast.error(
@@ -297,7 +298,11 @@ const onStart = (state = isAuthenticated, action) => {
                     .get("https://doit.liara.run/api/auth/users/me/")
                     .then((response) => {
                         keepUser(accessToken, state);
-                        localStorage.setItem("user", response.data.username);
+                        localStorage.setItem(
+                            "username",
+                            response.data.nickname
+                        );
+                        localStorage.setItem("email", response.data.email);
                         console.log("access token is valid : " + accessToken);
                     })
                     .catch((error) => {

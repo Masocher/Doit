@@ -92,8 +92,13 @@ export const TodoMenu = ({ lists, updateLists, updateListsTasks }) => {
                 </div>
 
                 <div className="user_name_email">
-                    <div className="user_name_box">Masocher</div>
-                    <div className="user_email">Masocherr@gmail.com</div>
+                    <div className="user_name_box">
+                        {localStorage.getItem("username")}
+                    </div>
+                    
+                    <div className="user_email">
+                        {localStorage.getItem("email")}
+                    </div>
                 </div>
             </div>
 
