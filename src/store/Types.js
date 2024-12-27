@@ -4,7 +4,6 @@ export const OPEN_USER_BOX = "OPEN_USER_BOX";
 export const CLOSE_USER_BOX = "CLOSE_USER_BOX";
 export const SELECT_BACKGROUND = "SELECT_BACKGROUND";
 export const UPDATE_BACKGROUND = "UPDATE_BACKGROUND";
-export const CHANGE_THEME = "CHANGE_THEME";
 export const OPEN_SETTINGS = "OPEN_SETTINGS";
 export const CLOSE_SETTINGS = "CLOSE_SETTINGS";
 export const SIGN_UP = "SIGN_UP";

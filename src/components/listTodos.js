@@ -3,7 +3,10 @@ import { faCheck, faStar, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { deleteTask, giveGetStar, completeTask } from "../store/Actions";
 import { useDispatch } from "react-redux";
 
-export const ListTodos = ({ updateListsTasks, listTasks, setTaskTodosStatus }) => {
+export const ListTodos = ({
+    updateListsTasks,
+    listTasks,
+}) => {
     const dispatch = useDispatch();
 
     return (

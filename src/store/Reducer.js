@@ -9,7 +9,6 @@ import {
     CLOSE_USER_BOX,
     SELECT_BACKGROUND,
     UPDATE_BACKGROUND,
-    CHANGE_THEME,
     OPEN_SETTINGS,
     CLOSE_SETTINGS,
     SIGN_UP,
@@ -91,18 +90,6 @@ const updateBackgroundReducer = (state = backgroundNumber, action) => {
     switch (action.type) {
         case UPDATE_BACKGROUND:
             return (state = action.payload);
-
-        default:
-            return state;
-    }
-};
-
-const themeStatus = false;
-
-const themeReducer = (state = themeStatus, action) => {
-    switch (action.type) {
-        case CHANGE_THEME:
-            return (state = !state);
 
         default:
             return state;
@@ -500,7 +487,6 @@ export const rootReducer = combineReducers({
     userBoxReducer,
     backgroundsReducer,
     updateBackgroundReducer,
-    themeReducer,
     listSettingsReducer,
     signUpReducer,
     logInReducer,

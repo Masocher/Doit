@@ -4,14 +4,12 @@ import {
     closeUserBox,
     selectBackground,
     updateBackground,
-    changeTheme,
     closeMenu,
     logOut,
 } from "../store/Actions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faClose,
-    faMoon,
     faArrowRightFromBracket,
 } from "@fortawesome/free-solid-svg-icons";
 import img1 from "../images/todo-background/1.jpg";
@@ -33,8 +31,6 @@ export const User = () => {
     const backgroundNumber = useSelector(
         (rootReducer) => rootReducer.updateBackgroundReducer
     );
-
-    const themeStatus = useSelector((rootReducer) => rootReducer.themeReducer);
 
     const dispatch = useDispatch();
 
@@ -82,21 +78,6 @@ export const User = () => {
 
                         <div className="user_email_">
                             {localStorage.getItem("email")}
-                        </div>
-
-                        <div className="theme_btn">
-                            <div
-                                className={`theme_change_btn ${
-                                    themeStatus ? "show" : ""
-                                }`}
-                                onClick={() => dispatch(changeTheme())}
-                            >
-                                <div></div>
-                            </div>
-
-                            <span>
-                                <FontAwesomeIcon icon={faMoon} />
-                            </span>
                         </div>
                     </div>
                 </div>

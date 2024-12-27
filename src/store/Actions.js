@@ -5,7 +5,6 @@ import {
     CLOSE_USER_BOX,
     SELECT_BACKGROUND,
     UPDATE_BACKGROUND,
-    CHANGE_THEME,
     OPEN_SETTINGS,
     CLOSE_SETTINGS,
     SIGN_UP,
@@ -47,10 +46,6 @@ export const selectBackground = (id) => {
 
 export const updateBackground = (num) => {
     return { type: UPDATE_BACKGROUND, payload: num };
-};
-
-export const changeTheme = () => {
-    return { type: CHANGE_THEME };
 };
 
 export const openSettings = () => {

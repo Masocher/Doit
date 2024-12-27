@@ -24,20 +24,18 @@ export const AuthPage = () => {
         <div className="container">
             <div id="particles-js"></div>
 
-            <div className={`logo ${logoS ? "show" : ""}`}>
-                Doit
-            </div>
+            <div className={`logo ${logoS ? "show" : ""}`}>Doit</div>
 
             <div className={`welcome_text ${welcomeS ? "show" : ""}`}>
                 Welcome to Do it
             </div>
 
             <div className={`auth_buttons ${authbuttonsS ? "show" : ""}`}>
-                <Link to={"/log-in"} style={{textDecoration: "none"}}>
+                <Link to={"/log-in"} style={{ textDecoration: "none" }}>
                     <div className="log_in_btn">Log in</div>
                 </Link>
 
-                <Link to={"/sign-up"} style={{textDecoration: "none"}}>
+                <Link to={"/sign-up"} style={{ textDecoration: "none" }}>
                     <div className="sign_up_btn">Sign up</div>
                 </Link>
             </div>

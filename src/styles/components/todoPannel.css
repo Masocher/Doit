@@ -177,9 +177,9 @@
     color: #fff;
 }
 .done_btn.completed {
-    background-color: #5CB338;
+    background-color: #5cb338;
     color: #fff;
-    border-color: #5CB338;
+    border-color: #5cb338;
 }
 
 .todo_title {
@@ -208,7 +208,7 @@
     margin-right: 15px;
 }
 .stared_btn {
-    color: #FFC145;
+    color: #ffc145;
 }
 
 .delete_btn {
