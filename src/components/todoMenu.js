@@ -120,7 +120,7 @@ export const TodoMenu = ({ lists, updateLists, updateListsTasks }) => {
                 <Link to="/home" style={{ textDecoration: "none" }}>
                     <div
                         className={`home_todos ${
-                            location.pathname === "/" ? "show" : ""
+                            location.pathname === "/home" ? "show" : ""
                         }`}
                     >
                         <span>

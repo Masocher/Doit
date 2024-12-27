@@ -267,6 +267,10 @@
         height: 40px;
         font-size: 14px;
     }
+
+    .no_lists {
+        font-size: 14px;
+    }
 }
 
 @media (max-width: 1024px) {
@@ -300,6 +304,10 @@
     .user_box_icon {
         width: 30px;
         height: 30px;
+        font-size: 12px;
+    }
+
+    .no_lists {
         font-size: 12px;
     }
 }

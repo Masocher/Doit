@@ -161,6 +161,37 @@ export const TodoPannel = ({ status }) => {
         listsReducer();
     }, []);
 
+    const getDate = () => {
+        let today = new Date();
+        let month = today.getMonth() + 1;
+        let year = today.getFullYear();
+        let date = today.getDate();
+        return `${month} - ${date} - ${year}`;
+    };
+
+    const getTime = () => {
+        let time = new Date();
+        let hours = time.getHours();
+        let minutes = time.getMinutes();
+        return { hour: hours, min: minutes };
+    };
+
+    const [date, setDate] = useState(getDate());
+    const [time, setTime] = useState(getTime());
+
+    const updateDate = () => {
+        setTimeout(() => {
+            getDate();
+            getTime();
+            setDate(getDate());
+            setTime(getTime());
+        }, 100);
+    };
+
+    useEffect(() => {
+        updateDate();
+    });
+
     return (
         <div className="todo_pannel">
             <div className="menu_open_icon_wrapper">
@@ -232,14 +263,21 @@ export const TodoPannel = ({ status }) => {
                                 : "Tasks"}
                         </span>
 
-                        <div className="just_date">01 - 01 - 2025</div>
+                        <div className="just_date">{date}</div>
                     </div>
 
                     <div className="tasks_title_right_content">
                         <div className="time">
                             <div className="time_wrapper">
-                                <div className="hours">08</div>
-                                <div className="minutes">00</div>
+                                <div className="hours">
+                                    {time.hour < 10 ? "0" : ""}
+                                    {time.hour}
+                                </div>
+                                <span>:</span>
+                                <div className="minutes">
+                                    {time.min < 10 ? "0" : ""}
+                                    {time.min}
+                                </div>
                             </div>
 
                             <div className="am_pm">AM</div>

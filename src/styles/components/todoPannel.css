@@ -91,8 +91,19 @@
 
 .time {
     display: flex;
+    flex-direction: column;
     align-items: center;
     font-family: PoppinsBold;
+}
+
+.time_wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.time_wrapper span {
+    margin: 0 4px;
+    font-size: 20px;
 }
 
 .time_wrapper div {
@@ -100,14 +111,9 @@
     font-size: 30px;
 }
 
-.minutes {
-    position: relative;
-    bottom: 15px;
-}
-
 .am_pm {
     font-size: 14px;
-    margin: -15px 0 0 10px;
+    margin-top: -5px;
 }
 
 .just_date {
@@ -278,7 +284,7 @@
 
     .am_pm {
         font-size: 12px;
-        margin: -10px 0 0 10px;
+        margin-top: 0;
     }
 
     .just_date {
@@ -312,6 +318,10 @@
     .delete_btn {
         font-size: 14px;
     }
+
+    .no_task {
+        font-size: 14px;
+    }
 }
 
 @media (max-width: 768px) {
@@ -326,6 +336,10 @@
 
     .background_color_box {
         border-radius: 0;
+    }
+
+    .no_task {
+        font-size: 12px;
     }
 }
 
